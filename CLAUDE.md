@@ -12,8 +12,8 @@
 - **Type:** Static marketing site / landing page (single product, plus a store-locator page)
 - **Owner:** Zyra Spirits brand team (Courtney Remekie)
 - **Repo:** github.com/Remekie/rootbeer
-- **Live URL:** https://rootbeervodka.com
-- **Staging URL:** [FILL IN — Cloudflare Pages *.pages.dev preview URL]
+- **Live URL:** https://rootbeervodka.com (custom domain pending attach in Pages)
+- **Pages URL:** https://rootbeervodka.pages.dev (Cloudflare Pages project `rootbeervodka`)
 
 Positioning: the only all-natural root beer vodka in North America. Distilled in Alberta with real sarsaparilla at 30% ABV.
 
@@ -210,7 +210,8 @@ Then confirm the Pages project has the `DB` binding (wrangler.toml provides it, 
 - Branch naming: `feature/short-description`, `fix/bug-description`.
 - Commit messages: Conventional Commits (`feat:`, `fix:`, `refactor:`, `docs:`, `chore:`).
 - PRs small and focused — one concern per PR. No force-pushing to `main`.
-- Deploy: Cloudflare Pages builds from the connected branch. [FILL IN — confirm production branch and build command in the Pages project.]
+- Deploy: Cloudflare Pages project `rootbeervodka`. Production branch `main`, build command `npm run build`, output dir `dist`, root dir `/`. The D1 binding comes from `wrangler.toml`, so Git builds inherit it.
+- The project was first published via direct upload (`npx wrangler pages deploy`). Git auto-deploy and the `rootbeervodka.com` custom domain are attached in the Pages dashboard (one-time).
 
 ---
 
