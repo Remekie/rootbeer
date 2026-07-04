@@ -1,6 +1,6 @@
 ---
 import RecipeBlock from './RecipeBlock.astro';
-import { recipes } from '../lib/site';
+import { recipes, serves } from '../lib/site';
 import mule from '../assets/recipe-mule.png';
 import float from '../assets/recipe-float.png';
 
@@ -11,12 +11,21 @@ const images = { mule, float } as const;
     <header class="cocktails__head">
       <p class="kicker">How to drink it</p>
       <hr class="rule" />
-      <h2>Two ways to pour it.</h2>
+      <h2>Pour it your way.</h2>
       <p class="lead cocktails__lead">
-        Root beer vodka is easy to mix. Start with the long, crisp one; end with the one
-        that tastes like dessert.
+        Root beer vodka mixes easy. Pour it over ice, lengthen it with soda or cola, or
+        build one of the two cocktails below.
       </p>
     </header>
+
+    <ul class="cocktails__serves">
+      {serves.map((s) => (
+        <li class="serve">
+          <p class="serve__name">{s.name}</p>
+          <p class="serve__how">{s.how}</p>
+        </li>
+      ))}
+    </ul>
 
     <div class="cocktails__list">
       {recipes.map((recipe, i) => (
@@ -27,7 +36,32 @@ const images = { mule, float } as const;
 </section>
 
 <style>
-  .cocktails__head { max-width: 42rem; margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+  .cocktails__head { max-width: 42rem; margin-bottom: clamp(2rem, 5vw, 3rem); }
   .cocktails__lead { margin-top: var(--space-6); color: var(--ink-on-dark-mute); }
+
+  .cocktails__serves {
+    list-style: none;
+    margin: 0 0 clamp(3rem, 8vw, 5.5rem);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .serve { border-top: 1px solid var(--line-on-dark); padding-top: var(--space-4); }
+  .serve__name {
+    font-size: var(--fs-kicker);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: var(--space-3);
+  }
+  .serve__how { color: var(--ink-on-dark-mute); }
+
   .cocktails__list { display: grid; gap: clamp(3rem, 8vw, 6rem); }
+
+  @media (max-width: 46rem) {
+    .cocktails__serves { grid-template-columns: 1fr; gap: 0; }
+    .serve { padding-block: var(--space-4); }
+  }
 </style>

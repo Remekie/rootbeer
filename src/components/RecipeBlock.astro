@@ -50,13 +50,20 @@ const { recipe, image, reversed = false } = Astro.props;
 <style>
   .recipe {
     display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-areas: "media body";
     gap: clamp(1.5rem, 5vw, 4rem);
     align-items: center;
   }
-  .recipe--reversed .recipe__figure { order: 2; }
+  /* Reversed rows swap the track widths too, so the image column stays the
+     wider 1.15fr track in both orientations and both figures render equal size. */
+  .recipe--reversed {
+    grid-template-columns: 0.85fr 1.15fr;
+    grid-template-areas: "body media";
+  }
 
-  .recipe__figure { margin: 0; }
+  .recipe__figure { grid-area: media; margin: 0; }
+  .recipe__body { grid-area: body; }
   .recipe__figure img {
     width: 100%;
     border-radius: var(--radius-media);
@@ -105,8 +112,11 @@ const { recipe, image, reversed = false } = Astro.props;
   }
 
   @media (max-width: 52rem) {
-    .recipe { grid-template-columns: 1fr; }
-    .recipe--reversed .recipe__figure { order: 0; }
+    .recipe,
+    .recipe--reversed {
+      grid-template-columns: 1fr;
+      grid-template-areas: "media" "body";
+    }
     .recipe__figure { max-width: 22rem; }
     .recipe__cols { grid-template-columns: 1fr; gap: var(--space-6); }
   }

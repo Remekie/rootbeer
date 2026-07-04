@@ -96,6 +96,24 @@ export const recipes: Recipe[] = [
   },
 ];
 
+export type Serve = { name: string; how: string };
+
+// Casual, no-recipe ways to drink it. Sits above the two cocktails.
+export const serves: Serve[] = [
+  {
+    name: 'Over ice',
+    how: 'Two ounces over one big cube. Sarsaparilla and creamy vanilla, nothing in the way.',
+  },
+  {
+    name: 'With soda',
+    how: 'Top with chilled soda water and a squeeze of lime. Long, light, and easy on a warm night.',
+  },
+  {
+    name: 'With cola',
+    how: 'Build over ice and top with cola for an easy nod to the classic root beer float.',
+  },
+];
+
 export type OtherProduct = {
   name: string;
   descriptor: string;
