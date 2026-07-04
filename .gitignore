@@ -7,6 +7,9 @@ node_modules/
 # environment
 .env
 .env.production
+.dev.vars
+# cloudflare / wrangler local state
+.wrangler/
 # logs
 npm-debug.log*
 # os

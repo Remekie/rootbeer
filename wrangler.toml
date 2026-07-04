@@ -1,0 +1,15 @@
+# Cloudflare Pages config for rootbeervodka.com.
+# Static output is built by `npm run build` into ./dist; the functions/ dir is
+# deployed as Pages Functions automatically.
+
+name = "rootbeervodka"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-07-04"
+
+# D1 binding consumed by functions/api/subscribe.ts as `env.DB`.
+# Run `npx wrangler d1 create zyra_subscribers` and paste the returned id below.
+# (Alternatively set this binding in the Pages dashboard and omit this block.)
+[[d1_databases]]
+binding = "DB"
+database_name = "zyra_subscribers"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"

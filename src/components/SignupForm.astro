@@ -1,18 +1,20 @@
 ---
 // Email capture — the primary conversion. One field, one button, a real reason.
-// Submits to PUBLIC_SUBSCRIBE_ENDPOINT (Klaviyo / Mailchimp / etc.) when set;
-// falls back to a native POST without JS. Designed inline states, never alert().
+// Posts JSON { email, source } to the first-party /api/subscribe Pages Function
+// (backed by D1). Override with PUBLIC_SUBSCRIBE_ENDPOINT if a different backend
+// is ever used. Inline states only, never alert().
 interface Props {
   variant?: 'hero' | 'band';
   id: string;
 }
 const { variant = 'hero', id } = Astro.props;
-const endpoint = import.meta.env.PUBLIC_SUBSCRIBE_ENDPOINT ?? '';
+const endpoint = import.meta.env.PUBLIC_SUBSCRIBE_ENDPOINT || '/api/subscribe';
 ---
 <form
   class:list={['signup', `signup--${variant}`]}
   data-signup
-  action={endpoint || '#'}
+  data-source={variant}
+  action={endpoint}
   method="post"
   novalidate
 >
@@ -30,6 +32,10 @@ const endpoint = import.meta.env.PUBLIC_SUBSCRIBE_ENDPOINT ?? '';
       aria-describedby={`${id}-status`}
     />
     <button class="signup__btn" type="submit">Get the first pour</button>
+  </div>
+  {/* Honeypot: hidden from people and assistive tech; bots that fill it are dropped server-side. */}
+  <div class="signup__hp" aria-hidden="true">
+    <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
   </div>
   <p class="signup__status" id={`${id}-status`} role="status" aria-live="polite" data-status></p>
 </form>
@@ -76,6 +82,15 @@ const endpoint = import.meta.env.PUBLIC_SUBSCRIBE_ENDPOINT ?? '';
   .signup__btn:hover { background: #d8b25f; }
   .signup__btn[disabled] { opacity: 0.6; cursor: progress; }
 
+  /* Honeypot lives off-screen (not display:none, so form-filling bots still see it). */
+  .signup__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
   .signup__status {
     min-height: 1.4rem;
     margin-top: var(--space-3);
@@ -103,9 +118,11 @@ const endpoint = import.meta.env.PUBLIC_SUBSCRIBE_ENDPOINT ?? '';
 
   document.querySelectorAll<HTMLFormElement>('form[data-signup]').forEach((form) => {
     const input = form.querySelector<HTMLInputElement>('input[name="email"]')!;
+    const honeypot = form.querySelector<HTMLInputElement>('input[name="company"]');
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const status = form.querySelector<HTMLParagraphElement>('[data-status]')!;
     const endpoint = form.getAttribute('action');
+    const source = form.dataset.source ?? '';
 
     const setStatus = (msg: string, state: 'ok' | 'error' | '') => {
       status.textContent = msg;
@@ -127,20 +144,15 @@ const endpoint = import.meta.env.PUBLIC_SUBSCRIBE_ENDPOINT ?? '';
       setStatus('Signing you up…', '');
 
       try {
-        if (endpoint && endpoint !== '#') {
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify({ email }),
-          });
-          if (!res.ok) throw new Error(String(res.status));
-          form.reset();
-          setStatus("You're on the list. We'll tell you the moment it's near you.", 'ok');
-        } else {
-          // No provider wired yet: do not fake success. Set PUBLIC_SUBSCRIBE_ENDPOINT before launch.
-          setStatus('Sign-ups are not live yet. Please check back soon.', 'error');
-          button.disabled = false;
-        }
+        if (!endpoint) throw new Error('No subscribe endpoint configured.');
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ email, source, company: honeypot?.value ?? '' }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        setStatus("You're on the list. We'll tell you the moment it's near you.", 'ok');
       } catch {
         setStatus('Something went wrong. Please try again in a moment.', 'error');
         button.disabled = false;

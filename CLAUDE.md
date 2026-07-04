@@ -11,7 +11,7 @@
 - **Project:** rootbeervodka.com (Zyra Root Beer Rush)
 - **Type:** Static marketing site / landing page (single product, plus a store-locator page)
 - **Owner:** Zyra Spirits brand team (Courtney Remekie)
-- **Repo:** [FILL IN — github.com/org/repo]
+- **Repo:** github.com/Remekie/rootbeer
 - **Live URL:** https://rootbeervodka.com
 - **Staging URL:** [FILL IN — Cloudflare Pages *.pages.dev preview URL]
 
@@ -26,8 +26,8 @@ Positioning: the only all-natural root beer vodka in North America. Distilled in
 | Framework | Astro (static-first, zero client JS by default) | ^5.1.1 |
 | Styling | Plain CSS with design tokens (no CSS framework) | — |
 | Language | TypeScript (data + config); `.astro` components | ^5 |
-| Backend | None. Static output; signup form POSTs to an external endpoint | — |
-| Database | None. Content lives in typed data files under `src/lib/` | — |
+| Backend | Cloudflare Pages Functions (`functions/`) — only the signup endpoint | — |
+| Database | Cloudflare D1 (waitlist subscribers). Site content stays in typed files under `src/lib/` | — |
 | Auth | None | — |
 | Maps | Leaflet (store locator, progressive enhancement) | ^1.9.4 |
 | Images | Astro `<Image>` + Sharp (responsive WebP at build) | sharp ^0.33.5 |
@@ -49,8 +49,11 @@ rootbeervodka/
 │   ├── lib/           # site.ts (copy + product facts), stores.ts (stockists), schema.ts (JSON-LD)
 │   ├── pages/         # index.astro, where-to-buy/index.astro (file-based routing)
 │   └── styles/        # tokens.css (locked brand system), global.css (base + utilities)
+├── functions/         # Cloudflare Pages Functions — api/subscribe.ts (waitlist -> D1)
+├── db/                # schema.sql for the D1 subscribers table
 ├── public/            # Static assets served as-is (favicon, robots.txt, og-image.png)
 ├── astro.config.mjs   # site URL, sitemap integration, image + build config
+├── wrangler.toml      # Pages output dir + D1 binding (env.DB)
 ├── tsconfig.json
 ├── .env.example       # Committed env template (no real values)
 └── package.json
@@ -150,7 +153,8 @@ The site is built to be fully crawlable and answer-engine friendly. Preserve:
 - No hardcoded copy or product facts in components — read from `src/lib/`.
 - No unused imports, dead code, or commented-out blocks (git history preserves it).
 - Every `fetch()` checks `response.ok` before parsing; every `async` path has error handling.
-- The signup form handles loading, success, and error states, and degrades safely when `PUBLIC_SUBSCRIBE_ENDPOINT` is unset.
+- The signup form handles loading, success, and error states. It posts to the first-party `/api/subscribe` Function by default; `PUBLIC_SUBSCRIBE_ENDPOINT` only overrides that.
+- `functions/api/subscribe.ts` validates server-side, drops honeypot hits, treats a duplicate email as success, and never reveals whether an address was already stored.
 
 ### Security
 - No secrets or tokens in source. `.env` only; `.env.example` stays current.
@@ -176,9 +180,28 @@ The site is built to be fully crawlable and answer-engine friendly. Preserve:
 
 | Variable | Purpose | Notes |
 |---|---|---|
-| `PUBLIC_SUBSCRIBE_ENDPOINT` | URL the signup form POSTs `{ "email": "..." }` to | Client-read (`PUBLIC_`). Unset in dev; **set before launch** or submissions are not stored. |
+| `PUBLIC_SUBSCRIBE_ENDPOINT` | Override the signup POST target | Client-read (`PUBLIC_`). Leave unset — the form defaults to `/api/subscribe`. Only set to route to a different backend. |
 
 - `.env.example` is committed. `.env` / `.env.local` are never committed.
+
+---
+
+## Signups (Cloudflare D1)
+
+The waitlist form posts JSON `{ email, source }` to the `/api/subscribe` Pages Function, which writes to a D1 database bound as `env.DB`.
+
+One-time setup (run by the owner; needs a Cloudflare login):
+
+```bash
+npx wrangler d1 create zyra_subscribers          # copy the database_id into wrangler.toml
+npx wrangler d1 execute zyra_subscribers --remote --file=./db/schema.sql
+```
+
+Then confirm the Pages project has the `DB` binding (wrangler.toml provides it, or set it in Pages -> Settings -> Functions -> D1 bindings).
+
+- Local run with Functions + D1: `npx wrangler pages dev` (not `astro dev`, which does not run Functions). Seed the local DB with the same `execute` command minus `--remote`.
+- Read the list: `npx wrangler d1 execute zyra_subscribers --remote --command "SELECT email, source, created_at FROM subscribers ORDER BY created_at DESC"`.
+- `wrangler` is invoked via `npx` — it is intentionally not a project dependency.
 
 ---
 
