@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-light.png';
+import { site } from '../lib/site';
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <Image src={logo} alt="Zyra" width={120} height={36} loading="lazy" />
+      <p class="footer__tagline">{site.tagline}</p>
+    </div>
+
+    <nav class="footer__links" aria-label="Footer">
+      <a href={site.parentSite} rel="noopener">drinkzyra.com</a>
+      <a href={site.social.instagram} rel="noopener">{site.handle}</a>
+    </nav>
+  </div>
+
+  <div class="container footer__legal">
+    <p>© {year} {site.legalName}. Please enjoy responsibly. You must be of legal drinking age.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--base);
+    border-top: 1px solid var(--line-on-dark);
+    padding-block: var(--space-16) var(--space-8);
+  }
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+  }
+  .footer__brand { display: flex; align-items: center; gap: var(--space-6); }
+  .footer__brand img { width: 104px; height: auto; }
+  .footer__tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1.05rem;
+  }
+
+  .footer__links { display: flex; gap: var(--space-8); font-size: 0.95rem; }
+  .footer__links a { color: var(--ink-on-dark-mute); transition: color 0.15s var(--ease); }
+  .footer__links a:hover { color: var(--cream); }
+
+  .footer__legal {
+    margin-top: var(--space-12);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--line-on-dark);
+    font-size: 0.85rem;
+    color: var(--ink-on-dark-mute);
+  }
+
+  @media (max-width: 34rem) {
+    .footer__brand { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+const notes = [
+  { label: 'Nose', text: 'Sarsaparilla and warm vanilla, the smell of a soda fountain.' },
+  { label: 'Palate', text: 'Creamy and rounded, gently spiced, never syrupy or candied.' },
+  { label: 'Finish', text: 'Clean and smooth. It drinks like a craft vodka, not a liqueur.' },
+];
+---
+<section class="section section--cream taste" id="taste">
+  <div class="container taste__grid">
+    <div class="taste__intro">
+      <p class="kicker">The taste</p>
+      <hr class="rule" />
+      <h2>What root beer vodka actually tastes like.</h2>
+      <p class="lead taste__lead">
+        Zyra Root Beer Rush is infused with real sarsaparilla, the root behind classic root
+        beer, so it lands as nostalgic rather than artificial. Expect creamy vanilla and
+        sarsaparilla, smooth and not too sweet, with a clean finish.
+      </p>
+    </div>
+
+    <dl class="taste__notes">
+      {notes.map((n) => (
+        <div class="taste__note">
+          <dt>{n.label}</dt>
+          <dd>{n.text}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .taste__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .taste__lead { margin-top: var(--space-6); color: var(--ink-on-light); max-width: 40ch; }
+
+  .taste__notes {
+    margin: 0;
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line-on-light);
+  }
+  .taste__note {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: var(--space-4);
+    padding-block: var(--space-6);
+    border-bottom: 1px solid var(--line-on-light);
+    align-items: baseline;
+  }
+  .taste__note dt {
+    font-size: var(--fs-kicker);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+  }
+  .taste__note dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    line-height: 1.25;
+    color: var(--ink-on-light);
+  }
+
+  @media (max-width: 54rem) {
+    .taste__grid { grid-template-columns: 1fr; }
+    .taste__note { grid-template-columns: 5.5rem 1fr; }
+  }
+</style>

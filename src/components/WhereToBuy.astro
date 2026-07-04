@@ -1,0 +1,29 @@
+---
+import SignupForm from './SignupForm.astro';
+---
+<section class="section section--cream buy" id="buy">
+  <div class="container buy__inner">
+    <p class="kicker">Where to buy</p>
+    <hr class="rule" />
+    <h2>Where to buy root beer vodka.</h2>
+    <p class="lead buy__lead">
+      Zyra Root Beer Rush is made in Alberta and sold at select retailers. Ask for it by
+      name at your local liquor store, and get on the list to hear the moment it's stocked
+      near you.
+    </p>
+    <div class="buy__cta">
+      <a class="btn btn--ghost" href="/where-to-buy">Find stores on map ↗</a>
+    </div>
+    <div class="buy__signup" id="signup-band">
+      <SignupForm id="signup-band-input" variant="band" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .buy__inner { max-width: 40rem; text-align: center; margin-inline: auto; }
+  .buy__inner .rule { margin-inline: auto; }
+  .buy__lead { margin-top: var(--space-6); margin-inline: auto; }
+  .buy__cta { margin-top: var(--space-6); }
+  .buy__signup { margin-top: var(--space-8); }
+</style>

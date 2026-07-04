@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import { otherProducts } from '../lib/site';
+import cocomist from '../assets/bottle-cocomist.png';
+import zyragold from '../assets/bottle-zyragold.png';
+
+const images = { cocomist, zyragold } as const;
+---
+<section class="section section--dark more" id="range">
+  <div class="container">
+    <header class="more__head">
+      <p class="kicker">The rest of the range</p>
+      <hr class="rule" />
+      <h2>More from Zyra.</h2>
+    </header>
+
+    <div class="more__list">
+      {otherProducts.map((p) => (
+        <article class="more__item">
+          <div class="more__figure">
+            <Image
+              src={images[p.imageKey]}
+              alt={`Zyra ${p.name} bottle`}
+              widths={[220, 320, 480, 600]}
+              sizes="(max-width: 46rem) 46vw, 17rem"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="more__body">
+            <h3 class="more__name">{p.name}</h3>
+            <p class="more__descriptor">{p.descriptor}</p>
+            <p class="more__note measure">{p.note}</p>
+            <a class="more__link" href={p.href} rel="noopener">
+              See {p.name} at drinkzyra.com<span aria-hidden="true"> →</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .more__head { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+
+  .more__list {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+  .more__item {
+    display: grid;
+    grid-template-columns: 17rem 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    padding-block: clamp(1.5rem, 4vw, 2.5rem);
+    border-top: 1px solid var(--line-on-dark);
+  }
+  .more__figure { display: grid; place-items: center; }
+  .more__figure img {
+    max-height: 21rem;
+    width: auto;
+    filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.55));
+  }
+
+  .more__name { margin-bottom: var(--space-2); }
+  .more__descriptor {
+    font-size: var(--fs-kicker);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: var(--space-4);
+  }
+  .more__note { color: var(--ink-on-dark-mute); }
+  .more__link {
+    display: inline-block;
+    margin-top: var(--space-6);
+    color: var(--cream);
+    border-bottom: 1px solid var(--line-on-dark);
+    padding-bottom: 2px;
+    transition: border-color 0.15s var(--ease);
+  }
+  .more__link:hover { border-color: var(--gold); }
+
+  @media (max-width: 46rem) {
+    .more__item { grid-template-columns: 10rem 1fr; gap: var(--space-6); }
+    .more__figure img { max-height: 14rem; }
+  }
+</style>

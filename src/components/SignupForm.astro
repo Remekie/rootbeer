@@ -1,0 +1,149 @@
+---
+// Email capture — the primary conversion. One field, one button, a real reason.
+// Submits to PUBLIC_SUBSCRIBE_ENDPOINT (Klaviyo / Mailchimp / etc.) when set;
+// falls back to a native POST without JS. Designed inline states, never alert().
+interface Props {
+  variant?: 'hero' | 'band';
+  id: string;
+}
+const { variant = 'hero', id } = Astro.props;
+const endpoint = import.meta.env.PUBLIC_SUBSCRIBE_ENDPOINT ?? '';
+---
+<form
+  class:list={['signup', `signup--${variant}`]}
+  data-signup
+  action={endpoint || '#'}
+  method="post"
+  novalidate
+>
+  <label class="sr-only" for={id}>Email address</label>
+  <div class="signup__row">
+    <input
+      class="signup__input"
+      id={id}
+      type="email"
+      name="email"
+      inputmode="email"
+      autocomplete="email"
+      required
+      placeholder="you@email.com"
+      aria-describedby={`${id}-status`}
+    />
+    <button class="signup__btn" type="submit">Get the first pour</button>
+  </div>
+  <p class="signup__status" id={`${id}-status`} role="status" aria-live="polite" data-status></p>
+</form>
+
+<style>
+  .signup { width: 100%; max-width: 30rem; }
+  .signup--band { max-width: 34rem; margin-inline: auto; }
+
+  .signup__row {
+    display: flex;
+    gap: var(--space-2);
+    border: 1px solid var(--line-on-dark);
+    border-radius: var(--radius);
+    padding: 0.35rem;
+    background: rgba(255, 255, 255, 0.02);
+    transition: border-color 0.15s var(--ease);
+  }
+  .signup__row:focus-within { border-color: var(--gold); }
+
+  .signup__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    color: var(--ink-on-dark);
+    padding: 0.7rem 0.85rem;
+    font-size: var(--fs-body);
+  }
+  .signup__input::placeholder { color: var(--ink-on-dark-mute); }
+  .signup__input:focus-visible { outline: 0; }
+
+  .signup__btn {
+    flex: 0 0 auto;
+    background: var(--gold);
+    color: var(--base);
+    border: 0;
+    border-radius: var(--radius);
+    padding: 0.7rem 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background-color 0.15s var(--ease);
+    white-space: nowrap;
+  }
+  .signup__btn:hover { background: #d8b25f; }
+  .signup__btn[disabled] { opacity: 0.6; cursor: progress; }
+
+  .signup__status {
+    min-height: 1.4rem;
+    margin-top: var(--space-3);
+    font-size: 0.95rem;
+    color: var(--ink-on-dark-mute);
+  }
+  .signup__status[data-state='error'] { color: #E58B6F; }
+  .signup__status[data-state='ok'] { color: var(--gold); }
+
+  /* On cream sections the inputs need light-surface treatment */
+  :global(.section--cream) .signup__row { border-color: var(--line-on-light); background: rgba(36, 20, 13, 0.02); }
+  :global(.section--cream) .signup__input { color: var(--ink-on-light); }
+  :global(.section--cream) .signup__input::placeholder { color: var(--ink-on-light-mute); }
+  :global(.section--cream) .signup__status { color: var(--ink-on-light-mute); }
+  :global(.section--cream) .signup__status[data-state='ok'] { color: var(--gold-ink); }
+
+  @media (max-width: 30rem) {
+    .signup__row { flex-direction: column; padding: var(--space-2); }
+    .signup__btn { width: 100%; }
+  }
+</style>
+
+<script>
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  document.querySelectorAll<HTMLFormElement>('form[data-signup]').forEach((form) => {
+    const input = form.querySelector<HTMLInputElement>('input[name="email"]')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const status = form.querySelector<HTMLParagraphElement>('[data-status]')!;
+    const endpoint = form.getAttribute('action');
+
+    const setStatus = (msg: string, state: 'ok' | 'error' | '') => {
+      status.textContent = msg;
+      if (state) status.dataset.state = state;
+      else delete status.dataset.state;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const email = input.value.trim();
+
+      if (!EMAIL.test(email)) {
+        setStatus('Please enter a valid email address.', 'error');
+        input.focus();
+        return;
+      }
+
+      button.disabled = true;
+      setStatus('Signing you up…', '');
+
+      try {
+        if (endpoint && endpoint !== '#') {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          if (!res.ok) throw new Error(String(res.status));
+        } else {
+          // No provider wired yet — set PUBLIC_SUBSCRIBE_ENDPOINT before launch.
+          console.warn('[signup] PUBLIC_SUBSCRIBE_ENDPOINT is not set; submission was not stored.');
+        }
+        form.reset();
+        setStatus("You're on the list. We'll tell you the moment it's near you.", 'ok');
+      } catch {
+        setStatus('Something went wrong. Please try again in a moment.', 'error');
+        button.disabled = false;
+      }
+    });
+  });
+</script>

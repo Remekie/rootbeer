@@ -1,0 +1,480 @@
+---
+/*
+  Store locator — brand-agnostic. Reads stores from ../lib/stores and design
+  tokens from the CSS custom properties, so dropping this into drinkzyra.com is
+  just: copy the file, swap stores.ts, keep the tokens.
+
+  Beats a typical Shopify locator on the things that matter:
+   • The store list is server-rendered HTML → crawlable, so "where to buy root
+     beer vodka in <city>" can actually rank. Dynamic widgets are invisible.
+   • One-tap "use my location" with real distance sorting (Haversine).
+   • Province filter + live text search.
+   • Full detail per store: address, phone, hours, one-tap directions.
+   • Works with zero JS (full list renders); map, search and near-me enhance it.
+*/
+import { stores, provinces, hasClubs } from '../lib/stores';
+
+// Product mapping for display
+const PRODUCT_LABELS: Record<string, string> = {
+  'Root Beer Rush': 'Root Beer Rush',
+  'Gold': 'Gold Vodka',
+  'Coco Mist': 'Coco Mist Vodka',
+};
+
+// Get label for each carried product
+const carriedProducts = (carries: string[]) =>
+  carries.map((p) => PRODUCT_LABELS[p] || p).join(', ');
+
+// The product this site sells. Stores carrying it get the "In stock" emphasis;
+// swap this one string when reusing the component for another Zyra site.
+const HERO_PRODUCT = 'Root Beer Rush';
+
+const provinceName: Record<string, string> = {
+  AB: 'Alberta', BC: 'British Columbia', SK: 'Saskatchewan', MB: 'Manitoba',
+  ON: 'Ontario', QC: 'Quebec', NB: 'New Brunswick', NS: 'Nova Scotia',
+  PE: 'Prince Edward Island', NL: 'Newfoundland and Labrador',
+  YT: 'Yukon', NT: 'Northwest Territories', NU: 'Nunavut',
+};
+const regionOf = (code: string) => provinceName[code] ?? code;
+
+// Server-sorted: province, then city, then name — a sensible browse order.
+const sorted = [...stores].sort(
+  (a, b) =>
+    a.province.localeCompare(b.province) ||
+    a.city.localeCompare(b.city) ||
+    a.name.localeCompare(b.name),
+);
+
+const directionsUrl = (s: (typeof stores)[number]) =>
+  `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+    `${s.name}, ${s.address}, ${s.city}, ${s.province} ${s.postal}`,
+  )}`;
+
+const hasStores = sorted.length > 0;
+---
+<section class="locator" id="locator">
+  <div class="container container-wide">
+    <header class="locator__head">
+      <p class="kicker">Where to buy</p>
+      <hr class="rule" />
+      <h1 class="locator__title">Where to buy root beer vodka.</h1>
+      <p class="lead locator__intro">
+        Zyra Root Beer Rush is made in Alberta and sold at select liquor
+        retailers. Find a stockist near you, or ask for it by name at your local
+        store and we'll get it on the shelf.
+      </p>
+    </header>
+
+    {hasStores ? (
+      <div class="locator__controls" data-controls hidden>
+        <div class="locator__search">
+          <label class="sr-only" for="store-search">Search stores by name or city</label>
+          <input
+            id="store-search"
+            type="search"
+            placeholder="Search by store or city…"
+            autocomplete="off"
+            data-search-input
+          />
+        </div>
+        <label class="sr-only" for="store-province">Filter by province</label>
+        <select id="store-province" data-province-filter>
+          <option value="">All provinces</option>
+          {provinces.map((p) => <option value={p}>{regionOf(p)}</option>)}
+        </select>
+        {hasClubs && (
+          <>
+            <label class="sr-only" for="store-type">Filter by category</label>
+            <select id="store-type" data-type-filter>
+              <option value="">All</option>
+              <option value="retail">Stores</option>
+              <option value="club">Clubs</option>
+            </select>
+          </>
+        )}
+        <button type="button" class="locator__near" data-near-me>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+          </svg>
+          Use my location
+        </button>
+        <p class="locator__count" data-count aria-live="polite"></p>
+      </div>
+
+      <div class="locator__body">
+        <div class="locator__mapwrap">
+          <div id="store-map" class="locator__map" role="application" aria-label="Map of stores"></div>
+        </div>
+
+        <div class="locator__listwrap">
+          <p class="locator__status" data-status role="status" aria-live="polite" hidden></p>
+          <ul class="locator__list" id="store-list">
+            {sorted.map((s) => (
+              <li
+                class="store"
+                data-store={s.id}
+                data-type={s.type}
+                data-province={s.province}
+                data-lat={s.lat}
+                data-lng={s.lng}
+                data-search={`${s.name} ${s.city} ${s.address}`.toLowerCase()}
+              >
+                <div class="store__top">
+                  <h2 class="store__name">{s.name}</h2>
+                  <span class="store__distance" data-distance hidden></span>
+                </div>
+                <p class="store__region">{regionOf(s.province)}</p>
+                <address class="store__address">
+                  {s.address}<br />{s.city}, {s.province} {s.postal}
+                </address>
+                <div class="store__carries" aria-label={`In stock: ${carriedProducts(s.carries)}`}>
+                  {carriedProducts(s.carries)}
+                </div>
+                <dl class="store__meta">
+                  {s.hours && (<><dt>Hours</dt><dd>{s.hours}</dd></>)}
+                  {s.phone && (
+                    <><dt>Phone</dt><dd><a href={`tel:${s.phone.replace(/[^0-9+]/g, '')}`}>{s.phone}</a></dd></>
+                  )}
+                </dl>
+                <div class="store__actions">
+                  <a class="store__dir" href={directionsUrl(s)} target="_blank" rel="noopener">Get directions ↗</a>
+                  {s.url && <a class="store__site" href={s.url} target="_blank" rel="noopener">Store website ↗</a>}
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p class="locator__empty" data-empty hidden>No stores match that search. Try a different city or clear the filters.</p>
+        </div>
+      </div>
+    ) : (
+      <p class="lead locator__intro">
+        We're rolling out to retailers now. Get on the list below and we'll tell
+        you the moment it's stocked near you.
+      </p>
+    )}
+
+    <div class="locator__fallback">
+      <p>Don't see a store near you?</p>
+      <a class="btn btn--ghost" href="/#signup">Get on the list and we'll alert you when it's near you</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .locator {
+    background: var(--base);
+    color: var(--ink-on-dark);
+    padding-block: clamp(7rem, 12vw, 9rem) clamp(3.5rem, 7vw, 6rem);
+  }
+  .locator__head { max-width: 46rem; }
+  .locator__title { margin-top: var(--space-4); }
+  .locator__intro { margin-top: var(--space-6); color: var(--ink-on-dark-mute); }
+
+  /* Controls bar — shown only once JS enhances the page (data-controls[hidden]) */
+  .locator__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+    margin-top: var(--space-12);
+  }
+  .locator__search { flex: 1 1 16rem; min-width: 0; }
+  .locator__search input,
+  .locator__controls select {
+    width: 100%;
+    background: var(--espresso);
+    border: 1px solid var(--line-on-dark);
+    border-radius: var(--radius);
+    color: var(--ink-on-dark);
+    padding: 0.7rem 0.9rem;
+    font-size: var(--fs-body);
+  }
+  .locator__controls select { flex: 0 0 auto; width: auto; }
+  .locator__search input::placeholder { color: var(--ink-on-dark-mute); }
+  .locator__search input:focus-visible,
+  .locator__controls select:focus-visible { outline: 0; border-color: var(--gold); }
+
+  .locator__near {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--gold);
+    color: var(--base);
+    border: 0;
+    border-radius: var(--radius);
+    padding: 0.7rem 1.1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 0.15s var(--ease);
+  }
+  .locator__near:hover { background: #d8b25f; }
+  .locator__near[aria-pressed='true'] { background: var(--gold-deep); }
+
+  .locator__count { margin: 0; font-size: 0.9rem; color: var(--ink-on-dark-mute); }
+
+  .locator__body {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    margin-top: var(--space-8);
+    align-items: start;
+  }
+
+  .locator__mapwrap { position: sticky; top: var(--space-8); }
+  .locator__map {
+    height: clamp(24rem, 60vh, 40rem);
+    border-radius: var(--radius-media);
+    border: 1px solid var(--line-on-dark);
+    background: var(--espresso);
+    overflow: hidden;
+  }
+  /* No-JS: the map box is empty weight, so drop it and let the list breathe. */
+  .no-js .locator__mapwrap { display: none; }
+
+  .locator__listwrap { min-width: 0; }
+  .locator__status {
+    background: var(--root-brown);
+    border: 1px solid var(--line-on-dark);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.9rem;
+    color: var(--ink-on-dark);
+    margin-bottom: var(--space-4);
+  }
+  .locator__status[data-tone='error'] { color: #E58B6F; }
+
+  .locator__list { list-style: none; padding: 0; display: grid; gap: 0; }
+
+  .store {
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--line-on-dark);
+  }
+  .store:last-child { border-bottom: 1px solid var(--line-on-dark); }
+  .store[hidden] { display: none; }
+
+  .store__top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .store__name { font-size: var(--fs-h3); font-weight: 600; }
+  .store__distance {
+    flex: 0 0 auto;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .store__region {
+    margin-top: var(--space-2);
+    font-size: 0.8125rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-on-dark-mute);
+  }
+  .store__address { font-style: normal; margin-top: var(--space-3); color: var(--ink-on-dark); line-height: 1.5; }
+
+.store__carries {
+  margin-top: var(--space-2);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+  .store__meta {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.25rem var(--space-4);
+    margin-top: var(--space-3);
+    font-size: 0.95rem;
+  }
+  .store__meta dt {
+    color: var(--ink-on-dark-mute);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding-top: 0.15rem;
+  }
+  .store__meta dd { color: var(--ink-on-dark); }
+  .store__meta a:hover { color: var(--gold); }
+
+  .store__actions { display: flex; flex-wrap: wrap; gap: var(--space-6); margin-top: var(--space-4); }
+  .store__actions a { color: var(--gold); font-weight: 600; font-size: 0.95rem; transition: color 0.15s var(--ease); }
+  .store__actions a:hover { color: #d8b25f; }
+
+  .locator__empty { margin-top: var(--space-8); color: var(--ink-on-dark-mute); }
+
+  .locator__fallback {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--line-on-dark);
+    text-align: center;
+  }
+  .locator__fallback p { color: var(--ink-on-dark-mute); margin-bottom: var(--space-4); }
+
+  .btn--ghost {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: var(--radius);
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+  }
+  .btn--ghost:hover { background: var(--gold); color: var(--base); }
+
+  @media (max-width: 60rem) {
+    .locator__body { grid-template-columns: 1fr; }
+    .locator__mapwrap { position: static; }
+    .locator__map { height: 20rem; }
+  }
+  @media (max-width: 34rem) {
+    .locator__controls { flex-direction: column; align-items: stretch; }
+    .locator__controls select, .locator__near { width: 100%; }
+  }
+</style>
+
+<script>
+  import L from 'leaflet';
+  import 'leaflet/dist/leaflet.css';
+  import { stores } from '../lib/stores';
+
+  const mapEl = document.getElementById('store-map');
+  const listEl = document.getElementById('store-list');
+  const controls = document.querySelector<HTMLElement>('[data-controls]');
+  // No stores, or no map/list on the page → nothing to enhance.
+  if (mapEl && listEl && controls && stores.length) {
+    controls.hidden = false;
+
+    const searchInput = document.querySelector<HTMLInputElement>('[data-search-input]')!;
+    const provinceFilter = document.querySelector<HTMLSelectElement>('[data-province-filter]')!;
+    const typeFilter = document.querySelector<HTMLSelectElement>('[data-type-filter]');
+    const nearBtn = document.querySelector<HTMLButtonElement>('[data-near-me]')!;
+    const countEl = document.querySelector<HTMLElement>('[data-count]')!;
+    const statusEl = document.querySelector<HTMLElement>('[data-status]')!;
+    const emptyEl = document.querySelector<HTMLElement>('[data-empty]')!;
+    const items = Array.from(listEl.querySelectorAll<HTMLLIElement>('.store'));
+
+    // ── Map ──────────────────────────────────────────────────────────────
+    const map = L.map(mapEl, { scrollWheelZoom: false }).setView([53.5, -113.5], 5);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    const pin = (type: 'retail' | 'club', active = false) =>
+      L.divIcon({
+        className: 'store-pin',
+        html: `<svg viewBox="0 0 24 32" width="28" height="37" aria-hidden="true"><path d="M12 0C5.4 0 0 5.2 0 11.7 0 20.5 12 32 12 32s12-11.5 12-20.3C24 5.2 18.6 0 12 0z" fill="${active ? '#F3ECDB' : type === 'club' ? '#1C4587' : '#C9A24B'}" stroke="#24140D" stroke-width="1.5"/><circle cx="12" cy="11.5" r="4.2" fill="#24140D"/></svg>`,
+        iconSize: [28, 37],
+        iconAnchor: [14, 37],
+        popupAnchor: [0, -34],
+      });
+
+    const markers = new Map<string, L.Marker>();
+    stores.forEach((s) => {
+      const m = L.marker([s.lat, s.lng], { icon: pin(s.type), title: s.name })
+        .addTo(map)
+        .bindPopup(
+          `<strong>${s.name}</strong><br>${s.address}<br>${s.city}, ${s.province} ${s.postal}<br><small style="color:#666">${s.type === 'club' ? 'On-premise club' : 'Liquor retailer'}</small>`,
+        );
+      markers.set(s.id, m);
+    });
+
+    const fitToVisible = () => {
+      const pts = items
+        .filter((li) => !li.hidden)
+        .map((li) => [Number(li.dataset.lat), Number(li.dataset.lng)] as [number, number]);
+      if (pts.length) map.fitBounds(pts, { padding: [40, 40], maxZoom: 12 });
+    };
+
+    // ── Filtering (search + province + type) ─────────────────────────────
+    const applyFilters = () => {
+      const q = searchInput.value.trim().toLowerCase();
+      const prov = provinceFilter.value;
+      const type = typeFilter?.value;
+      let shown = 0;
+      items.forEach((li) => {
+        const match =
+          (!prov || li.dataset.province === prov) &&
+          (!type || li.dataset.type === type) &&
+          (!q || (li.dataset.search ?? '').includes(q));
+        li.hidden = !match;
+        const marker = markers.get(li.dataset.store!);
+        if (marker) match ? marker.addTo(map) : marker.remove();
+        if (match) shown += 1;
+      });
+      countEl.textContent = `${shown} store${shown === 1 ? '' : 's'}`;
+      emptyEl.hidden = shown !== 0;
+      fitToVisible();
+    };
+
+    searchInput.addEventListener('input', applyFilters);
+    provinceFilter.addEventListener('change', applyFilters);
+    typeFilter?.addEventListener('change', applyFilters);
+
+    // ── Near me (Haversine distance sort) ────────────────────────────────
+    const distanceKm = (aLat: number, aLng: number, bLat: number, bLng: number) => {
+      const R = 6371;
+      const dLat = ((bLat - aLat) * Math.PI) / 180;
+      const dLng = ((bLng - aLng) * Math.PI) / 180;
+      const s =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos((aLat * Math.PI) / 180) * Math.cos((bLat * Math.PI) / 180) * Math.sin(dLng / 2) ** 2;
+      return 2 * R * Math.asin(Math.sqrt(s));
+    };
+
+    const setStatus = (msg: string, tone: 'info' | 'error' = 'info') => {
+      statusEl.textContent = msg;
+      statusEl.dataset.tone = tone;
+      statusEl.hidden = false;
+    };
+
+    nearBtn.addEventListener('click', () => {
+      if (!('geolocation' in navigator)) {
+        setStatus('Location isn’t available in this browser. Use the search instead.', 'error');
+        return;
+      }
+      nearBtn.setAttribute('aria-pressed', 'true');
+      setStatus('Finding stores near you…');
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+          const { latitude, longitude } = coords;
+          items.forEach((li) => {
+            const d = distanceKm(latitude, longitude, Number(li.dataset.lat), Number(li.dataset.lng));
+            li.dataset.dist = String(d);
+            const badge = li.querySelector<HTMLElement>('[data-distance]')!;
+            badge.textContent = `${d < 10 ? d.toFixed(1) : Math.round(d)} km away`;
+            badge.hidden = false;
+          });
+          // Reorder the list nearest-first; markers already on the map.
+          items
+            .slice()
+            .sort((a, b) => Number(a.dataset.dist) - Number(b.dataset.dist))
+            .forEach((li) => listEl.appendChild(li));
+          const nearest = items.reduce((a, b) =>
+            Number(a.dataset.dist) < Number(b.dataset.dist) ? a : b,
+          );
+          setStatus(`Sorted by distance. Nearest: ${nearest.querySelector('.store__name')?.textContent}.`);
+          map.setView([latitude, longitude], 8);
+          L.circleMarker([latitude, longitude], {
+            radius: 7, color: '#F3ECDB', weight: 2, fillColor: '#C9A24B', fillOpacity: 1,
+          }).addTo(map).bindPopup('You are here');
+        },
+        () => {
+          nearBtn.removeAttribute('aria-pressed');
+          setStatus('Couldn’t get your location. You may have blocked it. Use the search instead.', 'error');
+        },
+        { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
+      );
+    });
+
+    applyFilters(); // seed count + initial fit
+  }
+</script>

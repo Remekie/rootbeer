@@ -1,0 +1,64 @@
+/*
+  Zyra brand tokens — locked system, derived from the physical product.
+  Colors come from the bottle: cream label, root-beer browns, gold cap detail.
+  No purple, violet, indigo, electric blue, or teal-as-accent. No gradient heroes.
+*/
+:root {
+  /* Surfaces — root-beer dark to cream label */
+  --base:        #0A0705; /* near-black, the primary dark field */
+  --espresso:    #170D07; /* raised dark surface */
+  --root-brown:  #24140D; /* deep root-beer brown */
+  --root-brown2: #3A2214; /* lighter root-beer brown */
+  --cream:       #F3ECDB; /* label parchment — light sections */
+  --cream-soft:  #ECE3CF; /* muted body cream */
+
+  /* Ink — text on each surface */
+  --ink-on-dark:      #ECE3CF; /* body copy on dark */
+  --ink-on-dark-mute: #B9A98A; /* secondary copy on dark */
+  --ink-on-light:     #24140D; /* body copy on cream */
+  --ink-on-light-mute:#6B5844; /* secondary copy on cream */
+
+  /* Accent — the single warm caramel gold, used sparingly */
+  --gold:      #C9A24B;
+  --gold-deep: #A8823A;
+  --gold-ink:  #7E5F1E; /* accessible warm gold for small text/graphics on cream (>=4.5:1) */
+
+  /* Hairlines */
+  --line-on-dark:  rgba(201, 162, 75, 0.28);
+  --line-on-light: rgba(36, 20, 13, 0.16);
+
+  /* Type */
+  --font-display: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:    'DM Sans Variable', 'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* Fluid type scale — body never below 17px */
+  --fs-body:    1.0625rem;                              /* 17px floor */
+  --fs-lead:    clamp(1.1875rem, 1.05rem + 0.7vw, 1.5rem);
+  --fs-h3:      clamp(1.35rem, 1.15rem + 1vw, 1.9rem);
+  --fs-h2:      clamp(2rem, 1.5rem + 2.6vw, 3.4rem);
+  --fs-h1:      clamp(2.6rem, 1.7rem + 4.6vw, 5.25rem);
+  --fs-kicker:  0.8125rem;                              /* 13px small-caps label */
+
+  /* Spacing scale */
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Layout */
+  --container: 68rem;   /* editorial column, not full-bleed SaaS */
+  --container-wide: 78rem;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+
+  /* One radius token — applied consistently to every component */
+  --radius: 3px;
+  --radius-media: 6px;
+
+  /* Motion — a single, slow, reduced-motion-safe bloom is the only animation */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}

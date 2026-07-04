@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-light.png';
+---
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href="/" aria-label="Zyra, home">
+      <Image src={logo} alt="Zyra" width={132} height={39} loading="eager" />
+    </a>
+    <nav class="site-header__nav" aria-label="Primary">
+      <a href="#taste">Taste</a>
+      <a href="#cocktails">Cocktails</a>
+      <a href="#faq">FAQ</a>
+      <a class="site-header__cta" href="/where-to-buy">Find it near you</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: 10;
+    padding-block: var(--space-6);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+  .site-header__brand img { width: 118px; height: auto; }
+
+  .site-header__nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2rem);
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+  }
+  .site-header__nav a { color: var(--ink-on-dark-mute); transition: color 0.15s var(--ease); }
+  .site-header__nav a:hover { color: var(--cream); }
+  .site-header__cta { color: var(--gold) !important; }
+  .site-header__cta:hover { color: #d8b25f !important; }
+
+  /* Nav links collapse on small screens; wordmark + CTA remain */
+  @media (max-width: 34rem) {
+    .site-header__nav a:not(.site-header__cta) { display: none; }
+  }
+</style>

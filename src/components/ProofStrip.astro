@@ -1,0 +1,43 @@
+---
+const facts = ['All natural', 'Alberta-made', 'Real sarsaparilla', '30% ABV'];
+---
+<aside class="proof" aria-label="Product facts">
+  <ul class="container proof__list">
+    {facts.map((fact) => <li class="proof__item">{fact}</li>)}
+  </ul>
+</aside>
+
+<style>
+  .proof {
+    background: var(--espresso);
+    border-block: 1px solid var(--line-on-dark);
+  }
+  .proof__list {
+    list-style: none;
+    padding-block: var(--space-4);
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-4) clamp(1.25rem, 4vw, 3rem);
+  }
+  .proof__item {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream-soft);
+    position: relative;
+  }
+  /* Diamond separator between items — typographic, not icons */
+  .proof__item + .proof__item::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 0.6rem;
+    position: absolute;
+    inset-inline-start: clamp(-0.75rem, -2vw, -1.5rem);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+</style>

@@ -1,0 +1,113 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { Recipe } from '../lib/site';
+
+interface Props {
+  recipe: Recipe;
+  image: ImageMetadata;
+  reversed?: boolean;
+}
+const { recipe, image, reversed = false } = Astro.props;
+---
+<article class:list={['recipe', { 'recipe--reversed': reversed }]} id={recipe.slug}>
+  <figure class="recipe__figure">
+    <Image
+      src={image}
+      alt={`${recipe.name}, made with Zyra Root Beer Rush root beer vodka`}
+      widths={[360, 540, 720]}
+      sizes="(max-width: 52rem) 90vw, 34rem"
+      loading="lazy"
+      decoding="async"
+    />
+  </figure>
+
+  <div class="recipe__body">
+    <p class="kicker kicker--index">{recipe.index}</p>
+    <h3 class="recipe__name">{recipe.name}</h3>
+    <p class="recipe__blurb measure">{recipe.blurb}</p>
+
+    <div class="recipe__cols">
+      <div>
+        <h4 class="recipe__h">Ingredients</h4>
+        <ul class="recipe__ingredients">
+          {recipe.ingredients.map((i) => (
+            <li><span class="recipe__amt">{i.amount}</span>{i.item}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h4 class="recipe__h">Method</h4>
+        <ol class="recipe__method">
+          {recipe.steps.map((s) => <li>{s}</li>)}
+        </ol>
+        <p class="recipe__meta">{recipe.glassware} · {recipe.yield}</p>
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  .recipe {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .recipe--reversed .recipe__figure { order: 2; }
+
+  .recipe__figure { margin: 0; }
+  .recipe__figure img {
+    width: 100%;
+    border-radius: var(--radius-media);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  }
+
+  .recipe__name { margin-top: var(--space-2); }
+  .recipe__blurb { margin-top: var(--space-4); color: var(--ink-on-dark-mute); }
+
+  .recipe__cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    margin-top: var(--space-8);
+  }
+  .recipe__h {
+    font-family: var(--font-body);
+    font-size: var(--fs-kicker);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: var(--space-4);
+  }
+  .recipe__ingredients, .recipe__method { margin: 0; }
+  .recipe__ingredients { list-style: none; padding: 0; }
+  .recipe__ingredients li {
+    padding-block: 0.4rem;
+    border-bottom: 1px solid var(--line-on-dark);
+    color: var(--ink-on-dark);
+  }
+  .recipe__amt {
+    display: inline-block;
+    min-width: 3.75rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .recipe__method { padding-left: 1.1rem; color: var(--ink-on-dark); }
+  .recipe__method li { padding-block: 0.3rem; padding-left: 0.25rem; }
+  .recipe__method li::marker { color: var(--gold); font-variant-numeric: tabular-nums; }
+  .recipe__meta {
+    margin-top: var(--space-4);
+    font-size: 0.9rem;
+    color: var(--ink-on-dark-mute);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 52rem) {
+    .recipe { grid-template-columns: 1fr; }
+    .recipe--reversed .recipe__figure { order: 0; }
+    .recipe__figure { max-width: 22rem; }
+    .recipe__cols { grid-template-columns: 1fr; gap: var(--space-6); }
+  }
+</style>

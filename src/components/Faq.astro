@@ -1,0 +1,68 @@
+---
+import { faqs } from '../lib/site';
+---
+<section class="section section--cream faq" id="faq">
+  <div class="container faq__inner">
+    <header class="faq__head">
+      <p class="kicker">Questions</p>
+      <hr class="rule" />
+      <h2>Root beer vodka, answered.</h2>
+    </header>
+
+    <div class="faq__list">
+      {faqs.map((f, i) => (
+        <details class="faq__item" open={i === 0}>
+          <summary class="faq__q">{f.q}</summary>
+          <p class="faq__a">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__inner {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .faq__list { display: grid; border-top: 1px solid var(--line-on-light); }
+
+  .faq__item { border-bottom: 1px solid var(--line-on-light); }
+  .faq__q {
+    list-style: none;
+    cursor: pointer;
+    padding-block: var(--space-6);
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    line-height: 1.25;
+    color: var(--ink-on-light);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .faq__q::-webkit-details-marker { display: none; }
+  .faq__q::after {
+    content: '+';
+    color: var(--gold-ink);
+    font-family: var(--font-body);
+    font-size: 1.6rem;
+    line-height: 1;
+    transition: transform 0.2s var(--ease);
+  }
+  .faq__item[open] .faq__q::after { transform: rotate(45deg); }
+
+  .faq__a {
+    padding-bottom: var(--space-6);
+    max-width: 56ch;
+    color: var(--ink-on-light-mute);
+    font-size: var(--fs-body);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 54rem) {
+    .faq__inner { grid-template-columns: 1fr; }
+  }
+</style>

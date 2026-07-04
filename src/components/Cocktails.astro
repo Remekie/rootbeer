@@ -1,0 +1,33 @@
+---
+import RecipeBlock from './RecipeBlock.astro';
+import { recipes } from '../lib/site';
+import mule from '../assets/recipe-mule.png';
+import float from '../assets/recipe-float.png';
+
+const images = { mule, float } as const;
+---
+<section class="section section--dark cocktails" id="cocktails">
+  <div class="container">
+    <header class="cocktails__head">
+      <p class="kicker">How to drink it</p>
+      <hr class="rule" />
+      <h2>Two ways to pour it.</h2>
+      <p class="lead cocktails__lead">
+        Root beer vodka is easy to mix. Start with the long, crisp one; end with the one
+        that tastes like dessert.
+      </p>
+    </header>
+
+    <div class="cocktails__list">
+      {recipes.map((recipe, i) => (
+        <RecipeBlock recipe={recipe} image={images[recipe.imageKey]} reversed={i % 2 === 1} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cocktails__head { max-width: 42rem; margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+  .cocktails__lead { margin-top: var(--space-6); color: var(--ink-on-dark-mute); }
+  .cocktails__list { display: grid; gap: clamp(3rem, 8vw, 6rem); }
+</style>
