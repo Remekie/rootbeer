@@ -110,14 +110,14 @@ export const otherProducts: OtherProduct[] = [
     descriptor: 'All-natural pineapple & coconut infused vodka · 23% ABV',
     note: 'Pineapple and coconut cream, the way a good colada tastes. The warm-weather sibling to the Rush.',
     imageKey: 'cocomist',
-    href: 'https://drinkzyra.com',
+    href: site.parentSite,
   },
   {
     name: 'Zyra Gold',
     descriptor: '30× distilled, ultra-filtered vodka · 40% ABV',
     note: 'The clean, high-proof base of the range. Built for a proper martini and stirred classics.',
     imageKey: 'zyragold',
-    href: 'https://drinkzyra.com',
+    href: site.parentSite,
   },
 ];
 

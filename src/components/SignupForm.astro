@@ -134,12 +134,13 @@ const endpoint = import.meta.env.PUBLIC_SUBSCRIBE_ENDPOINT ?? '';
             body: JSON.stringify({ email }),
           });
           if (!res.ok) throw new Error(String(res.status));
+          form.reset();
+          setStatus("You're on the list. We'll tell you the moment it's near you.", 'ok');
         } else {
-          // No provider wired yet — set PUBLIC_SUBSCRIBE_ENDPOINT before launch.
-          console.warn('[signup] PUBLIC_SUBSCRIBE_ENDPOINT is not set; submission was not stored.');
+          // No provider wired yet: do not fake success. Set PUBLIC_SUBSCRIBE_ENDPOINT before launch.
+          setStatus('Sign-ups are not live yet. Please check back soon.', 'error');
+          button.disabled = false;
         }
-        form.reset();
-        setStatus("You're on the list. We'll tell you the moment it's near you.", 'ok');
       } catch {
         setStatus('Something went wrong. Please try again in a moment.', 'error');
         button.disabled = false;
