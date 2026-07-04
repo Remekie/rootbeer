@@ -12,4 +12,4 @@ compatibility_date = "2026-07-04"
 [[d1_databases]]
 binding = "DB"
 database_name = "zyra_subscribers"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "8125098c-947d-4df2-bda5-103c675e2f2f"
