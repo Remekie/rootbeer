@@ -1,0 +1,47 @@
+name: Deploy to Cloudflare Pages
+
+# Auto-deploy on every push to main. Keeps the existing Pages project
+# (rootbeervodka), its custom domain, and the D1 binding intact — this
+# builds the static site and uploads it via `wrangler pages deploy`.
+# Requires two repo secrets:
+#   CLOUDFLARE_API_TOKEN  - token with "Account -> Cloudflare Pages: Edit"
+#   CLOUDFLARE_ACCOUNT_ID - the "Remekie One" account id
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never run two deploys of the same branch at once; cancel the stale one.
+concurrency:
+  group: pages-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # name + output dir (dist) come from wrangler.toml.
+          command: pages deploy --project-name=rootbeervodka --branch=main
