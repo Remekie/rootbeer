@@ -12,7 +12,7 @@
 - **Type:** Static marketing site / landing page (single product, plus a store-locator page)
 - **Owner:** Zyra Spirits brand team (Courtney Remekie)
 - **Repo:** github.com/Remekie/rootbeer
-- **Live URL:** https://rootbeervodka.com (custom domain pending attach in Pages)
+- **Live URL:** https://rootbeervodka.com (custom domain active; apex + www over HTTPS)
 - **Pages URL:** https://rootbeervodka.pages.dev (Cloudflare Pages project `rootbeervodka`)
 
 Positioning: the only all-natural root beer vodka in North America. Distilled in Alberta with real sarsaparilla at 30% ABV.
