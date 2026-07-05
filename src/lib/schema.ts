@@ -32,6 +32,7 @@ export function buildGraph() {
     description: site.description,
     publisher: { '@id': orgId },
     inLanguage: 'en',
+    keywords: site.keywords.join(', '),
   };
 
   const productNode = {
@@ -44,6 +45,7 @@ export function buildGraph() {
     image: abs('/og-image.png'),
     url: site.url,
     countryOfOrigin: 'CA',
+    keywords: site.keywords.join(', '),
     additionalProperty: [
       { '@type': 'PropertyValue', name: 'Alcohol by volume', value: `${product.abvValue}%` },
       { '@type': 'PropertyValue', name: 'Volume', value: product.volume },
@@ -61,7 +63,7 @@ export function buildGraph() {
     recipeCategory: 'Cocktail',
     recipeCuisine: 'Cocktail',
     recipeYield: r.yield,
-    keywords: `root beer vodka, ${r.name}, Zyra Root Beer Rush`,
+    keywords: `root beer vodka, ${r.name}, Zyra Root Beer Rush, cocktail with root beer, alcoholic root beer drink`,
     recipeIngredient: r.ingredients.map((i) => `${i.amount} ${i.item}`.trim()),
     recipeInstructions: r.steps.map((text, i) => ({
       '@type': 'HowToStep',

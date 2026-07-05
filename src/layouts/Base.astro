@@ -26,6 +26,7 @@ const jsonLd = JSON.stringify(buildGraph());
     <script is:inline>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={site.keywords.join(', ')} />
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#0A0705" />
     <meta name="robots" content="index, follow, max-image-preview:large" />

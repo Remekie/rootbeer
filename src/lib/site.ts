@@ -2,6 +2,11 @@
   Single source of truth for rootbeervodka.com.
   Visible HTML and JSON-LD both render from this file so the crawlable copy and
   the structured data can never drift apart.
+
+  SEO keyword additions (2026-07-05):
+  - Added 3 new FAQs targeting high-volume, low-competition phrases
+  - Added "Rum and root beer" serve entry
+  - Keywords already present: "alcoholic root beer", "root beer cocktail", etc.
 */
 
 export const site = {
@@ -19,6 +24,18 @@ export const site = {
   title: 'Root Beer Vodka | Zyra Root Beer Rush: All-Natural, Alberta-Made',
   description:
     'Zyra Root Beer Rush is the only all-natural root beer vodka made in North America. Distilled in Alberta with real sarsaparilla at 30% ABV. Nostalgic, creamy, not too sweet.',
+  keywords: [
+    'root beer vodka',
+    'alcoholic root beer',
+    'root beer cocktail',
+    'root beer alcohol drink',
+    'root beer vodka drinks',
+    'cocktail with root beer',
+    'rum and root beer',
+    'vodka and root beer',
+    'alcoholic root beer drink',
+    'root beer mixed drink',
+  ],
 } as const;
 
 // Hard product facts — the proof strip and Product schema both read these.
@@ -112,6 +129,10 @@ export const serves: Serve[] = [
     name: 'With cola',
     how: 'Build over ice and top with cola for an easy nod to the classic root beer float.',
   },
+  {
+    name: 'Rum and root beer',
+    how: 'Two ounces dark rum over ice topped with chilled root beer. A simple highball with a nostalgic twist.',
+  },
 ];
 
 export type OtherProduct = {
@@ -166,5 +187,17 @@ export const faqs: Faq[] = [
   {
     q: 'Where can I buy root beer vodka?',
     a: 'Zyra Root Beer Rush is made in Alberta and sold at select retailers. Sign up below and we will tell you the moment it is stocked near you.',
+  },
+  {
+    q: 'What is an alcoholic root beer?',
+    a: 'An alcoholic root beer is a spirit infused with root beer flavour. Zyra Root Beer Rush is the only all-natural root beer vodka made in North America, distilled in Alberta at 30% ABV.',
+  },
+  {
+    q: 'What root beer cocktails are popular?',
+    a: 'The two most popular root beer cocktails are the Zyra Mule (with ginger beer and lime) and the Root Beer Float Martini (with cream and simple syrup). It also works well over ice with cola or cream soda.',
+  },
+  {
+    q: 'What do you mix rum and root beer with?',
+    a: 'Rum and root beer is a simple highball: pour 2 oz of dark rum over ice and top with chilled root beer. Add a splash of lime juice and a mint sprig for a backyard favourite.',
   },
 ];
