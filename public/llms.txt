@@ -1,0 +1,96 @@
+# LLMs.txt — rootbeervodka.com
+
+This file indexes the site content for AI agents and LLM-based tools.
+
+## Product Info
+
+**Zyra Root Beer Rush** — The only all-natural root beer vodka made in North America.
+
+- **Category:** All-natural root beer infused vodka
+- **ABV:** 30% ABV (60 proof)
+- **Volume:** 750 mL
+- **Origin:** Alberta, Canada
+- **Botanical:** Real sarsaparilla
+- **Tagline:** Pour Bold. Live Bright.
+
+**Taste profile:** Nostalgic sarsaparilla and creamy vanilla, smooth and not too sweet.
+
+## How to Drink
+
+### Over Ice
+Two ounces over one big cube. Sarsaparilla and creamy vanilla, nothing in the way.
+
+### With Soda
+Top with chilled soda water and a squeeze of lime. Long, light, and easy on a warm night.
+
+### With Cola
+Build over ice and top with cola for an easy nod to the classic root beer float.
+
+### Rum and Root Beer
+Two ounces dark rum over ice topped with chilled root beer.
+
+## Cocktails
+
+### Zyra Mule
+- 2 oz Zyra Root Beer Rush vodka
+- ½ oz Freshly squeezed lime juice
+- 3–4 oz Ginger beer
+- Garnish: Lime wheel & fresh mint
+- Serve in copper mug
+
+### Root Beer Float Martini
+- 2 oz Zyra Root Beer Rush vodka
+- 1 oz Cream
+- ½ oz Simple syrup
+- Garnish: Cream float or vanilla ice cream
+- Serve in chilled coupe
+
+## Other Products
+
+**Coco Mist** — All-natural pineapple & coconut infused vodka · 23% ABV
+
+**Zyra Gold** — 30× distilled, ultra-filtered vodka · 40% ABV
+
+## FAQs
+
+**Is there real root beer in it?**
+Infused with real sarsaparilla, not artificial root beer syrup.
+
+**Is root beer vodka sweet?**
+No. Smooth and not too sweet, closer to a craft spirit than a liqueur.
+
+**What is the ABV?**
+30% ABV (60 proof) in a 750 mL bottle.
+
+**Is it all-natural and gluten-free?**
+Yes. The only all-natural root beer vodka made in North America.
+
+**What do you mix root beer vodka with?**
+Ginger beer and lime for a Zyra Mule, cream and simple syrup for a Root Beer Float Martini. Also works with cola, cream soda, or soda water.
+
+**Where can I buy root beer vodka?**
+Sold at select retailers. Sign up on the site to be notified when stocked near you.
+
+## Site Structure
+
+- `/` — Homepage (hero, tasting notes, cocktails, where to buy, FAQ)
+- `/where-to-buy` — Store locator (static list + interactive map)
+
+## Tech Stack
+
+- **Framework:** Astro 5
+- **Hosting:** Cloudflare Pages
+- **Database:** Cloudflare D1 (waitlist subscribers)
+- **Fonts:** Self-hosted Fraunces + DM Sans
+- **Maps:** Leaflet
+
+## Links
+
+- **Site:** https://rootbeervodka.com
+- **Brand:** https://drinkzyra.com
+- **Instagram:** https://www.instagram.com/drinkzyra
+- **Repo:** https://github.com/Remekie/rootbeer
+
+## Last Updated
+
+2026-07-05
