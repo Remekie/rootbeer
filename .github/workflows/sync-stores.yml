@@ -1,0 +1,49 @@
+name: Sync stores from LiquorConnect
+
+# Refreshes src/lib/stores.retail.json from the live LiquorConnect (AGLC) API
+# once a week, and on demand from the Actions tab. If the store list changed,
+# it commits the new JSON to main — which triggers deploy.yml and ships it.
+#
+# On-premise clubs (src/lib/stores.clubs.ts) are hand-maintained and never touched.
+# To preview drift without committing: run `node scripts/sync-stores.mjs --check`.
+
+on:
+  schedule:
+    # Mondays 09:17 UTC (~02:17 America/Edmonton) — off-peak, deliberately not :00.
+    - cron: '17 9 * * 1'
+  workflow_dispatch: {}
+
+# Needed so the job can push the refreshed JSON back to the repo.
+permissions:
+  contents: write
+
+# Don't overlap with a deploy or another sync of the same branch.
+concurrency:
+  group: sync-stores-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Sync retail stores from LiquorConnect
+        run: node scripts/sync-stores.mjs
+
+      - name: Commit and push if changed
+        run: |
+          if [ -n "$(git status --porcelain src/lib/stores.retail.json)" ]; then
+            git config user.name "store-sync-bot"
+            git config user.email "store-sync-bot@users.noreply.github.com"
+            git add src/lib/stores.retail.json
+            git commit -m "chore(stores): weekly LiquorConnect sync"
+            git push
+            echo "Pushed updated store list — deploy.yml will publish it."
+          else
+            echo "No changes — store list already current."
+          fi

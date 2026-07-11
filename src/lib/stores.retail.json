@@ -1,0 +1,542 @@
+[
+  {
+    "id": "bsw-liquor-53593",
+    "type": "retail",
+    "name": "BSW LIQUOR",
+    "carries": [
+      "Root Beer Rush",
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "1890-80 Mahogany Road SE",
+    "city": "Calgary",
+    "province": "AB",
+    "postal": "T3M 3K9",
+    "phone": "(403) 918-3740",
+    "hours": "Mon–Tue 10a–10p · Wed–Sat 10a–11p · Sun 10a–10p",
+    "lat": 51.045,
+    "lng": -114.057
+  },
+  {
+    "id": "crown-cellars-53581",
+    "type": "retail",
+    "name": "CROWN CELLARS",
+    "carries": [
+      "Root Beer Rush",
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "202 Cityscape Square NE",
+    "city": "Calgary",
+    "province": "AB",
+    "postal": "T3N 2A8",
+    "phone": "(403) 470-3527",
+    "lat": 51.049,
+    "lng": -114.053
+  },
+  {
+    "id": "argyll-liquor-link-51964",
+    "type": "retail",
+    "name": "ARGYLL LIQUOR LINK",
+    "carries": [
+      "Root Beer Rush",
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "6922 76 Ave NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6B 2R2",
+    "phone": "(780) 761-2620",
+    "hours": "Mon–Sat 10a–2a · Sun 10a–12a",
+    "lat": 53.512878,
+    "lng": -113.43454
+  },
+  {
+    "id": "south-country-co-op-limited--51403",
+    "type": "retail",
+    "name": "SOUTH COUNTRY CO-OP LIMITED @ STRACHAN",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "Road",
+    "city": "Medicine Hat",
+    "province": "AB",
+    "postal": "T1B 4V7",
+    "phone": "(403) 526-6021",
+    "lat": 50.013278,
+    "lng": -110.644457
+  },
+  {
+    "id": "king-liquor-51374",
+    "type": "retail",
+    "name": "KING LIQUOR",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "115-9310 Southfort Drive",
+    "city": "Fort Saskatchewan",
+    "province": "AB",
+    "postal": "T8L 0C5",
+    "phone": "(780) 499-4964",
+    "hours": "Mon–Sun 10a–12a",
+    "lat": 53.693884,
+    "lng": -113.216194
+  },
+  {
+    "id": "bsw-liquor-51835",
+    "type": "retail",
+    "name": "BSW LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "134-425 Aviation Road NE",
+    "city": "Calgary",
+    "province": "AB",
+    "postal": "T2E 7H8",
+    "phone": "(587) 619-1346",
+    "hours": "Mon–Thu 10a–10p · Fri–Sat 10a–12a · Sun 10a–10p",
+    "lat": 51.096602,
+    "lng": -114.03137
+  },
+  {
+    "id": "zyn-the-wine-market-ltd-53839",
+    "type": "retail",
+    "name": "ZYN THE WINE MARKET LTD.",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "3050-2600 Portland St SE",
+    "city": "Calgary",
+    "province": "AB",
+    "postal": "T2G 4M6",
+    "phone": "(403) 543-8900",
+    "hours": "Tue–Sat 10a–6p · Sun 11a–4p",
+    "url": "http://www.zyn.ca",
+    "lat": 51.031357,
+    "lng": -114.030162
+  },
+  {
+    "id": "121-jasper-liquor-51256",
+    "type": "retail",
+    "name": "121 JASPER LIQUOR",
+    "carries": [
+      "Coco Mist"
+    ],
+    "address": "12110 Jasper Avenue NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5N 3J8",
+    "phone": "(780) 453-0003",
+    "hours": "Mon–Sun 9a–2a",
+    "lat": 53.541329,
+    "lng": -113.531169
+  },
+  {
+    "id": "97-street-liquor-store-50419",
+    "type": "retail",
+    "name": "97 STREET LIQUOR STORE",
+    "carries": [
+      "Gold"
+    ],
+    "address": "12965 97 St NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5E 4C4",
+    "phone": "(780) 473-5974",
+    "hours": "Mon–Sun 9a–2a",
+    "lat": 53.589442,
+    "lng": -113.491372
+  },
+  {
+    "id": "ad-liquor-mart-50728",
+    "type": "retail",
+    "name": "AD LIQUOR MART",
+    "carries": [
+      "Coco Mist"
+    ],
+    "address": "11836 Wayne Gretzky Drive Northbound NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5B 4L3",
+    "phone": "(587) 524-0280",
+    "hours": "Mon–Thu 10a–10p · Fri–Sat 10a–11p · Sun 10a–10p",
+    "lat": 53.558,
+    "lng": -113.482
+  },
+  {
+    "id": "co-op-liquor-at-chappelle-51682",
+    "type": "retail",
+    "name": "CO-OP LIQUOR AT CHAPPELLE",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "14163 28 Ave SW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6W 4H2",
+    "phone": "(587) 469-3168",
+    "lat": 53.40954,
+    "lng": -113.56834
+  },
+  {
+    "id": "co-op-liquor-at-orchards-53628",
+    "type": "retail",
+    "name": "CO-OP LIQUOR AT ORCHARDS",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "Bay C-1-6725 25 Avenue SW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6X 2Z3",
+    "phone": "(780) 963-0500",
+    "lat": 53.410511,
+    "lng": -113.445648
+  },
+  {
+    "id": "cold-ones-liquor-discounter--53827",
+    "type": "retail",
+    "name": "COLD ONES LIQUOR DISCOUNTER #4",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "8305 Argyll Rd NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6C 4B2",
+    "phone": "(780) 760-2653",
+    "hours": "Mon 10a–10p · Tue–Sun 10a–10a",
+    "lat": 53.502284,
+    "lng": -113.453304
+  },
+  {
+    "id": "discount-liquor-50558",
+    "type": "retail",
+    "name": "DISCOUNT LIQUOR",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "5-13651 St Albert Trail NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5L 5E7",
+    "phone": "(780) 451-8884",
+    "hours": "Mon 9a–8p · Tue–Fri 9a–10p · Sat 10a–10p · Sun 10a–7p",
+    "url": "https://www.liquor137.ca",
+    "lat": 53.59846,
+    "lng": -113.573425
+  },
+  {
+    "id": "evolution-liquor-52050",
+    "type": "retail",
+    "name": "EVOLUTION LIQUOR",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "9216 51 Ave NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6E 5L8",
+    "phone": "(780) 433-9100",
+    "hours": "Mon–Sat 10a–2a · Sun 10a–12a",
+    "url": "https://www.skipthedishes.com/evolution-liquor-9216-51st-avenue-northwest",
+    "lat": 53.488542,
+    "lng": -113.469725
+  },
+  {
+    "id": "jack-s-liquor-store-53348",
+    "type": "retail",
+    "name": "JACK'S LIQUOR STORE",
+    "carries": [
+      "Coco Mist"
+    ],
+    "address": "9012 50 St NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6B 2Z5",
+    "phone": "(780) 490-7631",
+    "hours": "Mon 10a–10p · Tue–Thu 10–10p · Fri 10–12a · Sat 10–11p · Sun 10–10p",
+    "lat": 53.522398,
+    "lng": -113.419249
+  },
+  {
+    "id": "liquor-gallery-54771",
+    "type": "retail",
+    "name": "LIQUOR GALLERY",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "13030 50 St NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5A 4V9",
+    "phone": "(780) 406-5477",
+    "lat": 53.591571,
+    "lng": -113.417865
+  },
+  {
+    "id": "liquor-house-50581",
+    "type": "retail",
+    "name": "LIQUOR HOUSE",
+    "carries": [
+      "Gold"
+    ],
+    "address": "11314 Jasper Ave NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5K 0L8",
+    "phone": "(587) 521-9241",
+    "lat": 53.541265,
+    "lng": -113.5162
+  },
+  {
+    "id": "liquor-hut-edmonton-54067",
+    "type": "retail",
+    "name": "LIQUOR HUT EDMONTON",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "22943 97 Avenue NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5T 7P5",
+    "phone": "(780) 447-1298",
+    "hours": "Mon–Tue 10a–11p · Wed–Thu 10a–12a · Fri–Sat 9a–2a · Sun 9a–10p",
+    "lat": 53.536978,
+    "lng": -113.713295
+  },
+  {
+    "id": "liquor-island-54681",
+    "type": "retail",
+    "name": "LIQUOR ISLAND",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "21534 92 Ave NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5S 2N7",
+    "phone": "(587) 341-9051",
+    "lat": 53.528867,
+    "lng": -113.690429
+  },
+  {
+    "id": "liquor-island-54834",
+    "type": "retail",
+    "name": "LIQUOR ISLAND",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "6721 Ellerslie Rd SW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6X 2A1",
+    "phone": "(778) 887-4331",
+    "lat": 53.424474,
+    "lng": -113.444451
+  },
+  {
+    "id": "liquor-island-54743",
+    "type": "retail",
+    "name": "LIQUOR ISLAND",
+    "carries": [
+      "Coco Mist"
+    ],
+    "address": "7808 Gateway Blvd NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6E 6C3",
+    "phone": "(204) 981-3136",
+    "lat": 53.514565,
+    "lng": -113.494884
+  },
+  {
+    "id": "red-night-liquor-store-51114",
+    "type": "retail",
+    "name": "RED NIGHT LIQUOR STORE",
+    "carries": [
+      "Gold"
+    ],
+    "address": "3448 99 Street NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6E 5X5",
+    "phone": "(780) 465-2660",
+    "hours": "Mon–Sun 12p–2",
+    "lat": 53.468542,
+    "lng": -113.487391
+  },
+  {
+    "id": "sobeys-liquor-lewis-estates-50574",
+    "type": "retail",
+    "name": "SOBEYS LIQUOR (LEWIS ESTATES)",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "Estates",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5T 4K5",
+    "phone": "(780) 489-3919",
+    "lat": 53.524021,
+    "lng": -113.668505
+  },
+  {
+    "id": "vine-arts-wine-and-spirits-54101",
+    "type": "retail",
+    "name": "VINE ARTS WINE AND SPIRITS",
+    "carries": [
+      "Gold"
+    ],
+    "address": "10961 124 St NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5M 0H9",
+    "phone": "(587) 735-2372",
+    "lat": 53.55602,
+    "lng": -113.53568
+  },
+  {
+    "id": "g-p-liquor-for-less-53256",
+    "type": "retail",
+    "name": "G.P. LIQUOR FOR LESS",
+    "carries": [
+      "Gold"
+    ],
+    "address": "101-10001 97 Ave",
+    "city": "Grande Prairie",
+    "province": "AB",
+    "postal": "T8V 0N3",
+    "phone": "(780) 532-8080",
+    "hours": "Fri–Sat 10a–2a",
+    "lat": 55.167638,
+    "lng": -118.79524
+  },
+  {
+    "id": "the-great-canadian-liquor-co-50179",
+    "type": "retail",
+    "name": "THE GREAT CANADIAN LIQUOR COMPANY",
+    "carries": [
+      "Gold"
+    ],
+    "address": "10108 101 Avenue",
+    "city": "Lac La Biche",
+    "province": "AB",
+    "postal": "T0A 2C0",
+    "phone": "(780) 483-8183",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 54.770457,
+    "lng": -111.976953
+  },
+  {
+    "id": "great-canadian-liquor-compan-50062",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR COMPANY",
+    "carries": [
+      "Gold"
+    ],
+    "address": "4515 47 Avenue",
+    "city": "Rocky Mountain House",
+    "province": "AB",
+    "postal": "T4T 1C5",
+    "phone": "(403) 847-1011",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 52.370045,
+    "lng": -114.911279
+  },
+  {
+    "id": "bsw-liquor-51755",
+    "type": "retail",
+    "name": "BSW LIQUOR",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "300-55 Salisbury Way",
+    "city": "Sherwood Park",
+    "province": "AB",
+    "postal": "T8B 0A9",
+    "phone": "(780) 570-2796",
+    "hours": "Mon–Thu 10a–10p · Fri–Sat 10a–11p · Sun 10a–10p",
+    "lat": 53.511228,
+    "lng": -113.306983
+  },
+  {
+    "id": "crossroads-liquor-50666",
+    "type": "retail",
+    "name": "CROSSROADS LIQUOR",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "46-975 Broadmoor Boulevard",
+    "city": "Sherwood Park",
+    "province": "AB",
+    "postal": "T8A 5W9",
+    "phone": "(780) 417-3422",
+    "hours": "Mon–Thu 10a–10p · Fri–Sat 10a–12a · Sun 10a–10p",
+    "lat": 53.540066,
+    "lng": -113.321004
+  },
+  {
+    "id": "co-op-liquor-at-deer-park-53992",
+    "type": "retail",
+    "name": "CO-OP LIQUOR AT DEER PARK",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "220-1 Dalton Link",
+    "city": "Spruce Grove",
+    "province": "AB",
+    "postal": "T7X 0E8",
+    "phone": "(780) 963-0500",
+    "lat": 53.563054,
+    "lng": -113.93336
+  },
+  {
+    "id": "co-op-liquor-at-erin-ridge-52703",
+    "type": "retail",
+    "name": "CO-OP LIQUOR AT ERIN RIDGE",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "240-925 St Albert Trail",
+    "city": "St. Albert",
+    "province": "AB",
+    "postal": "T8N 4K6",
+    "phone": "(780) 544-0786",
+    "hours": "Mon–Sun 10a–10p",
+    "lat": 53.668989,
+    "lng": -113.635283
+  },
+  {
+    "id": "co-op-liquor-at-riverside-52648",
+    "type": "retail",
+    "name": "CO-OP LIQUOR AT RIVERSIDE",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "200-10 Rose Gate",
+    "city": "St. Albert",
+    "province": "AB",
+    "postal": "T8N 7Y3",
+    "phone": "(780) 963-0500",
+    "lat": 53.630002,
+    "lng": -113.659585
+  }
+]
