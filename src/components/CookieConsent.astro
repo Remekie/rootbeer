@@ -1,0 +1,73 @@
+---
+import { cookieConsent } from '../lib/site';
+// Ported from drinkzyra.com's CookieConsent.astro (same brand family, same
+// pattern) since this site had no consent mechanism yet. GA4's Consent Mode
+// default in Base.astro reads the same 'zyra-cookie-ok' localStorage key this
+// sets, so accepting here also unlocks analytics live, no reload needed.
+---
+<div class="cookie" data-cookie hidden>
+  <div class="container cookie__inner">
+    <p class="cookie__text">{cookieConsent.body}</p>
+    <button class="cookie__btn" type="button" data-cookie-accept>{cookieConsent.accept}</button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = 'zyra-cookie-ok';
+    var el = document.querySelector('[data-cookie]');
+    if (!el) return;
+    try {
+      if (localStorage.getItem(KEY) === '1') return;
+    } catch (e) {}
+    el.hidden = false;
+    el.querySelector('[data-cookie-accept]').addEventListener('click', function () {
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      try { if (window.gtag) window.gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+      el.hidden = true;
+    });
+  })();
+</script>
+
+<style>
+  .cookie {
+    position: fixed;
+    inset-block-end: 0;
+    inset-inline: 0;
+    z-index: 150;
+    background: color-mix(in srgb, var(--espresso) 96%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--line-on-dark);
+    padding-block: var(--space-4);
+  }
+  .cookie[hidden] { display: none; }
+  .cookie__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+  .cookie__text { color: var(--ink-on-dark-mute); font-size: 0.92rem; margin: 0; }
+  .cookie__btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.75rem;
+    padding-inline: var(--space-6);
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--gold);
+    color: var(--base);
+    font-family: var(--font-body);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .cookie__btn:hover { background: var(--gold-deep); }
+
+  @media (max-width: 40rem) {
+    .cookie__inner { flex-direction: column; align-items: stretch; text-align: center; gap: var(--space-3); }
+  }
+</style>

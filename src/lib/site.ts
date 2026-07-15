@@ -36,6 +36,13 @@ export const site = {
     'alcoholic root beer drink',
     'root beer mixed drink',
   ],
+  /** GA4 Measurement ID. Loaded consent-gated in Base.astro (see CookieConsent). */
+  gaMeasurementId: 'G-N5ZNBF10LL',
+} as const;
+
+export const cookieConsent = {
+  body: 'We use cookies and similar technologies to provide the best experience on our website.',
+  accept: 'Accept',
 } as const;
 
 // Hard product facts — the proof strip and Product schema both read these.

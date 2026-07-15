@@ -5,6 +5,7 @@ import '@fontsource-variable/dm-sans';
 import '../styles/global.css';
 import { site } from '../lib/site';
 import { buildGraph } from '../lib/schema';
+import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
   title?: string;
@@ -50,9 +51,26 @@ const jsonLd = JSON.stringify(buildGraph());
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" set:html={jsonLd} is:inline />
+
+    {/* GA4, Consent Mode v2: defaults to denied unless the cookie banner was
+        already accepted (localStorage), so nothing tracks until consent.
+        CookieConsent's accept handler calls gtag('consent','update',...) to
+        flip it live without a page reload. */}
+    <script is:inline define:vars={{ gaId: site.gaMeasurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      var granted = false;
+      try { granted = localStorage.getItem('zyra-cookie-ok') === '1'; } catch (e) {}
+      gtag('consent', 'default', { analytics_storage: granted ? 'granted' : 'denied' });
+      gtag('js', new Date());
+      gtag('config', gaId);
+    </script>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.gaMeasurementId}`}></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <slot />
+    <CookieConsent />
   </body>
 </html>
