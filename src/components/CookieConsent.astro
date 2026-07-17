@@ -23,7 +23,17 @@ import { cookieConsent } from '../lib/site';
     el.hidden = false;
     el.querySelector('[data-cookie-accept]').addEventListener('click', function () {
       try { localStorage.setItem(KEY, '1'); } catch (e) {}
-      try { if (window.gtag) window.gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+      try {
+        if (window.gtag) {
+          window.gtag('consent', 'update', { analytics_storage: 'granted' });
+          /* gtag does not re-send the page view after a mid-session consent
+             grant (verified on drinkzyra.com via network trace), so without
+             this the accepting visitor only starts counting from their NEXT
+             page. The pre-consent cookieless ping never reaches standard
+             reports, so this does not double-count. */
+          window.gtag('event', 'page_view');
+        }
+      } catch (e) {}
       el.hidden = true;
     });
   })();
