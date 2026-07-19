@@ -52,17 +52,17 @@ const jsonLd = JSON.stringify(buildGraph());
 
     <script type="application/ld+json" set:html={jsonLd} is:inline />
 
-    {/* GA4, Consent Mode v2: defaults to denied unless the cookie banner was
-        already accepted (localStorage), so nothing tracks until consent.
-        CookieConsent's accept handler calls gtag('consent','update',...) to
-        flip it live without a page reload. */}
+    {/* GA4, Consent Mode v2 on the implied-consent model (PIPEDA): analytics
+        is granted by default and only denied when the visitor has clicked
+        Decline in the cookie notice ('zyra-cookie-ok' === '0'; '1' means the
+        notice was acknowledged). Disclosure lives at /privacy. */}
     <script is:inline define:vars={{ gaId: site.gaMeasurementId }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       window.gtag = gtag;
-      var granted = false;
-      try { granted = localStorage.getItem('zyra-cookie-ok') === '1'; } catch (e) {}
-      gtag('consent', 'default', { analytics_storage: granted ? 'granted' : 'denied' });
+      var declined = false;
+      try { declined = localStorage.getItem('zyra-cookie-ok') === '0'; } catch (e) {}
+      gtag('consent', 'default', { analytics_storage: declined ? 'denied' : 'granted' });
       gtag('js', new Date());
       gtag('config', gaId);
     </script>

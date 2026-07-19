@@ -1,14 +1,22 @@
 ---
 import { cookieConsent } from '../lib/site';
-// Ported from drinkzyra.com's CookieConsent.astro (same brand family, same
-// pattern) since this site had no consent mechanism yet. GA4's Consent Mode
-// default in Base.astro reads the same 'zyra-cookie-ok' localStorage key this
-// sets, so accepting here also unlocks analytics live, no reload needed.
+// Implied-consent notice: analytics is already running (Base.astro grants by
+// default), so this banner informs and offers an opt-out rather than gating.
+// 'zyra-cookie-ok' in localStorage: '1' = acknowledged, '0' = declined;
+// absent = not yet answered, so the banner shows. Visitors who accepted under
+// the old opt-in model already hold '1' and never see the banner again.
+// Mirrors drinkzyra.com's CookieConsent (same brand family, same key).
 ---
 <div class="cookie" data-cookie hidden>
   <div class="container cookie__inner">
-    <p class="cookie__text">{cookieConsent.body}</p>
-    <button class="cookie__btn" type="button" data-cookie-accept>{cookieConsent.accept}</button>
+    <p class="cookie__text">
+      {cookieConsent.body}
+      <a class="cookie__link" href="/privacy">{cookieConsent.linkLabel}</a>
+    </p>
+    <div class="cookie__actions">
+      <button class="cookie__decline" type="button" data-cookie-decline>{cookieConsent.decline}</button>
+      <button class="cookie__btn" type="button" data-cookie-accept>{cookieConsent.accept}</button>
+    </div>
   </div>
 </div>
 
@@ -17,21 +25,19 @@ import { cookieConsent } from '../lib/site';
     var KEY = 'zyra-cookie-ok';
     var el = document.querySelector('[data-cookie]');
     if (!el) return;
-    try {
-      if (localStorage.getItem(KEY) === '1') return;
-    } catch (e) {}
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    if (stored === '1' || stored === '0') return;
     el.hidden = false;
     el.querySelector('[data-cookie-accept]').addEventListener('click', function () {
       try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      el.hidden = true;
+    });
+    el.querySelector('[data-cookie-decline]').addEventListener('click', function () {
+      try { localStorage.setItem(KEY, '0'); } catch (e) {}
       try {
         if (window.gtag) {
-          window.gtag('consent', 'update', { analytics_storage: 'granted' });
-          /* gtag does not re-send the page view after a mid-session consent
-             grant (verified on drinkzyra.com via network trace), so without
-             this the accepting visitor only starts counting from their NEXT
-             page. The pre-consent cookieless ping never reaches standard
-             reports, so this does not double-count. */
-          window.gtag('event', 'page_view');
+          window.gtag('consent', 'update', { analytics_storage: 'denied' });
         }
       } catch (e) {}
       el.hidden = true;
@@ -59,6 +65,30 @@ import { cookieConsent } from '../lib/site';
     gap: var(--space-6);
   }
   .cookie__text { color: var(--ink-on-dark-mute); font-size: 0.92rem; margin: 0; }
+  .cookie__link {
+    color: var(--ink-on-dark);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .cookie__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex: 0 0 auto;
+  }
+  .cookie__decline {
+    background: none;
+    border: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink-on-dark-mute);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .cookie__decline:hover { color: var(--ink-on-dark); }
   .cookie__btn {
     flex: 0 0 auto;
     display: inline-flex;
@@ -79,5 +109,6 @@ import { cookieConsent } from '../lib/site';
 
   @media (max-width: 40rem) {
     .cookie__inner { flex-direction: column; align-items: stretch; text-align: center; gap: var(--space-3); }
+    .cookie__actions { justify-content: center; }
   }
 </style>

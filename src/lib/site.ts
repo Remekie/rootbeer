@@ -40,9 +40,52 @@ export const site = {
   gaMeasurementId: 'G-N5ZNBF10LL',
 } as const;
 
+/*
+  Implied-consent model (PIPEDA): the banner informs rather than gates.
+  Analytics runs by default; Decline turns it off and the choice persists.
+*/
 export const cookieConsent = {
-  body: 'We use cookies and similar technologies to provide the best experience on our website.',
-  accept: 'Accept',
+  body: 'We use analytics cookies to understand how people find and use the site.',
+  linkLabel: 'Privacy Policy',
+  accept: 'Got it',
+  decline: 'Decline',
+} as const;
+
+/* ── Privacy page (/privacy) — plain-language PIPEDA disclosure ────────── */
+/* Paragraphs may contain minimal inline HTML (links only); rendered with
+   set:html on the privacy page. */
+export const privacyPage = {
+  title: 'Privacy Policy',
+  updated: 'July 19, 2026',
+  intro:
+    'This site is run by Zyra Spirits Inc. This page explains what information we collect, why we collect it and how to opt out. Questions go to <a href="mailto:hello@drinkzyra.com">hello@drinkzyra.com</a>.',
+  sections: [
+    {
+      heading: 'Analytics',
+      paragraphs: [
+        'We use Google Analytics to understand how people find and use the site: pages visited, device and browser type, and approximate location based on IP address. This data is aggregated and does not identify you by name.',
+        'You can opt out any time with the Decline button in the cookie notice, or with <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google’s opt-out browser add-on</a>.',
+      ],
+    },
+    {
+      heading: 'Information you give us',
+      paragraphs: [
+        'If you join the email list we store your email address and which form you signed up from. Nothing else is collected.',
+      ],
+    },
+    {
+      heading: 'Where your information lives',
+      paragraphs: [
+        'Your information is stored with our service providers: Cloudflare (hosting and database) and Google (analytics). We never sell it or share it with anyone else.',
+      ],
+    },
+    {
+      heading: 'Your choices',
+      paragraphs: [
+        'To unsubscribe from emails or have your information deleted, email <a href="mailto:hello@drinkzyra.com">hello@drinkzyra.com</a> and we will take care of it.',
+      ],
+    },
+  ],
 } as const;
 
 // Hard product facts — the proof strip and Product schema both read these.
