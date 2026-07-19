@@ -27,11 +27,56 @@ interface D1Database {
 }
 interface Env {
   DB?: D1Database;
+  RESEND_API_KEY?: string;
 }
-type RequestContext = { request: Request; env: Env };
+type RequestContext = {
+  request: Request;
+  env: Env;
+  waitUntil(promise: Promise<unknown>): void;
+};
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_EMAIL_LENGTH = 254; // RFC 5321 practical maximum
+
+/*
+  Signup notification — one email to the brand inbox per NEW subscriber, sent
+  via Resend's REST API (plain fetch, no dependency). Fail-open: skipped
+  entirely until RESEND_API_KEY is set (Pages -> Settings -> env vars, or
+  `wrangler pages secret put`), and a send failure never affects the signup
+  response. NOTIFY_FROM lives on drinkzyra.com because that is the domain
+  verified in the shared Resend account (both Zyra sites notify the same
+  inbox); the Site line below identifies which site the signup came from.
+*/
+const NOTIFY_TO = 'hello@drinkzyra.com';
+const NOTIFY_FROM = 'Zyra Signups <notify@drinkzyra.com>';
+const SITE = 'rootbeervodka.com';
+
+const notifySignup = async (env: Env, email: string, source: string | null): Promise<void> => {
+  if (!env.RESEND_API_KEY) return;
+  try {
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: NOTIFY_FROM,
+        to: [NOTIFY_TO],
+        subject: `New signup: ${email}`,
+        text: [
+          `${email} just joined the list.`,
+          '',
+          `Site: ${SITE}`,
+          `Source: ${source ?? 'unknown'}`,
+          `Time: ${new Date().toISOString()}`,
+        ].join('\n'),
+      }),
+    });
+  } catch {
+    // Notification failure must never affect the signup itself.
+  }
+};
 
 const json = (body: unknown, status = 200): Response =>
   new Response(JSON.stringify(body), {
@@ -39,7 +84,7 @@ const json = (body: unknown, status = 200): Response =>
     headers: { 'Content-Type': 'application/json' },
   });
 
-export const onRequestPost = async ({ request, env }: RequestContext): Promise<Response> => {
+export const onRequestPost = async ({ request, env, waitUntil }: RequestContext): Promise<Response> => {
   const contentType = request.headers.get('content-type') ?? '';
   if (!contentType.includes('application/json')) {
     return json({ error: 'Send JSON.' }, 415);
@@ -91,6 +136,10 @@ export const onRequestPost = async ({ request, env }: RequestContext): Promise<R
     }
     return json({ error: 'Could not save your signup. Please try again.' }, 500);
   }
+
+  // Only NEW subscribers reach this point (duplicates return early above), so
+  // repeat submissions never re-notify.
+  waitUntil(notifySignup(env, email, source));
 
   return json({ ok: true }, 201);
 };
