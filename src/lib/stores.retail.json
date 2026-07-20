@@ -84,6 +84,22 @@
     "lng": -113.216194
   },
   {
+    "id": "south-country-co-op-chinook-liquor-50522",
+    "type": "retail",
+    "name": "SOUTH COUNTRY CO-OP @ CHINOOK LIQUOR",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "Store",
+    "city": "Lethbridge",
+    "province": "AB",
+    "postal": "T1J 5K6",
+    "phone": "(403) 329-0246",
+    "hours": "Mon–Sat 10–10p · Sun 10–8p",
+    "lat": 53.9333,
+    "lng": -116.5765
+  },
+  {
     "id": "bsw-liquor-51835",
     "type": "retail",
     "name": "BSW LIQUOR",
@@ -538,5 +554,260 @@
     "phone": "(780) 963-0500",
     "lat": 53.630002,
     "lng": -113.659585
+  },
+  {
+    "id": "bottoms-up-cold-beer-liquor-store-50050",
+    "type": "retail",
+    "name": "BOTTOMS UP COLD BEER & LIQUOR STORE",
+    "carries": [
+      "Gold"
+    ],
+    "address": "4413 50 Street",
+    "city": "Sylvan Lake",
+    "province": "AB",
+    "postal": "T4S 1J9",
+    "phone": "(403) 887-2188",
+    "hours": "Mon–Thu 10a–11p · Fri–Sat 10a–12a · Sun 10a–11p",
+    "lat": 52.30045,
+    "lng": -114.096952
+  },
+  {
+    "id": "great-canadian-liquor-50048",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "4808 50 Street",
+    "city": "Athabasca",
+    "province": "AB",
+    "postal": "T9S 1C9",
+    "phone": "(780) 675-1154",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 54.718409,
+    "lng": -113.285425
+  },
+  {
+    "id": "great-canadian-liquor-50051",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "10-5004 46 Street",
+    "city": "Sylvan Lake",
+    "province": "AB",
+    "postal": "T4S 1C2",
+    "phone": "(403) 887-3581",
+    "hours": "Mon–Wed 10–11p · Thu 10–1p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 52.309942,
+    "lng": -114.092558
+  },
+  {
+    "id": "great-canadian-liquor-50052",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "9513 100 Street",
+    "city": "Morinville",
+    "province": "AB",
+    "postal": "T8R 1R2",
+    "phone": "(780) 939-4203",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 53.795926,
+    "lng": -113.644396
+  },
+  {
+    "id": "great-canadian-liquor-50053",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "10012 103 Street",
+    "city": "Morinville",
+    "province": "AB",
+    "postal": "T8R 1R7",
+    "phone": "(780) 939-4743",
+    "hours": "Mon–Wed 10a–11p · Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 53.802588,
+    "lng": -113.651777
+  },
+  {
+    "id": "great-canadian-liquor-50063",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "3 West Valley Centre",
+    "city": "Cochrane",
+    "province": "AB",
+    "postal": "T4C 1M1",
+    "phone": "(403) 932-0530",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 53.9333,
+    "lng": -116.5765
+  },
+  {
+    "id": "great-canadian-liquor-50064",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "542 24 Street",
+    "city": "Fort Macleod",
+    "province": "AB",
+    "postal": "T0L 0Z0",
+    "phone": "(403) 553-4877",
+    "lat": 49.725298,
+    "lng": -113.398691
+  },
+  {
+    "id": "great-canadian-liquor-50074",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "4710 50 Avenue",
+    "city": "Athabasca",
+    "province": "AB",
+    "postal": "T9S 1C1",
+    "phone": "(780) 675-2163",
+    "hours": "Mon–Tue 10a–10p · Wed 10a–11p · Thu 10p–11p · Fri–Sat 10a–12a · Sun 10a–10p",
+    "lat": 54.720908,
+    "lng": -113.28235
+  },
+  {
+    "id": "great-canadian-liquor-50169",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "4309 50 Avenue",
+    "city": "St Paul",
+    "province": "AB",
+    "postal": "T0A 3A3",
+    "phone": "(780) 645-5484",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 53.990979,
+    "lng": -111.277049
+  },
+  {
+    "id": "great-canadian-liquor-50217",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "124 Columbia Boulevard W",
+    "city": "Lethbridge",
+    "province": "AB",
+    "postal": "T1K 4J4",
+    "phone": "(403) 329-6996",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 49.675324,
+    "lng": -112.873876
+  },
+  {
+    "id": "great-canadian-liquor-50253",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "11478 149 St NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5M 1W7",
+    "phone": "(780) 451-5384",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 53.565194,
+    "lng": -113.578593
+  },
+  {
+    "id": "great-canadian-liquor-50483",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "103-11710 102 Street",
+    "city": "Grande Prairie",
+    "province": "AB",
+    "postal": "T8V 7S7",
+    "phone": "(780) 532-6404",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 55.186755,
+    "lng": -118.802448
+  },
+  {
+    "id": "great-canadian-liquor-50496",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "109-5001 30 Avenue",
+    "city": "Beaumont",
+    "province": "AB",
+    "postal": "T4X 1T9",
+    "phone": "(780) 929-6800",
+    "hours": "Mon–Tue 10a–11p · Wed 10:–11p · Thu 10a–11p · Fri–Sat 10a–12a · Sun 10a–11p",
+    "lat": 53.9333,
+    "lng": -116.5765
+  },
+  {
+    "id": "great-canadian-liquor-50580",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "11020 101 Avenue",
+    "city": "Fairview",
+    "province": "AB",
+    "postal": "T0H 1L0",
+    "phone": "(780) 835-2555",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 56.066028,
+    "lng": -118.38578
+  },
+  {
+    "id": "great-canadian-liquor-50917",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "101 2 Avenue NW",
+    "city": "Slave Lake",
+    "province": "AB",
+    "postal": "T0G 2A0",
+    "phone": "(780) 483-8183",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 55.282454,
+    "lng": -114.772464
+  },
+  {
+    "id": "the-great-canadian-liquor-company-50608",
+    "type": "retail",
+    "name": "THE GREAT CANADIAN LIQUOR COMPANY",
+    "carries": [
+      "Gold"
+    ],
+    "address": "10-117 Sunridge Road W",
+    "city": "Lethbridge",
+    "province": "AB",
+    "postal": "T1J 5J1",
+    "phone": "(403) 329-4344",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 53.9333,
+    "lng": -116.5765
   }
 ]
