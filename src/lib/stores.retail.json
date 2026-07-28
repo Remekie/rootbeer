@@ -96,8 +96,8 @@
     "postal": "T1J 5K6",
     "phone": "(403) 329-0246",
     "hours": "Mon–Sat 10–10p · Sun 10–8p",
-    "lat": 53.9333,
-    "lng": -116.5765
+    "lat": 49.6946,
+    "lng": -112.8331
   },
   {
     "id": "bsw-liquor-51835",
@@ -648,8 +648,8 @@
     "postal": "T4C 1M1",
     "phone": "(403) 932-0530",
     "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
-    "lat": 53.9333,
-    "lng": -116.5765
+    "lat": 51.1875,
+    "lng": -114.4711
   },
   {
     "id": "great-canadian-liquor-50064",
@@ -759,8 +759,8 @@
     "postal": "T4X 1T9",
     "phone": "(780) 929-6800",
     "hours": "Mon–Tue 10a–11p · Wed 10:–11p · Thu 10a–11p · Fri–Sat 10a–12a · Sun 10a–11p",
-    "lat": 53.9333,
-    "lng": -116.5765
+    "lat": 53.3525,
+    "lng": -113.4151
   },
   {
     "id": "great-canadian-liquor-50580",
@@ -807,7 +807,7 @@
     "postal": "T1J 5J1",
     "phone": "(403) 329-4344",
     "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
-    "lat": 53.9333,
-    "lng": -116.5765
+    "lat": 49.6946,
+    "lng": -112.8331
   }
 ]

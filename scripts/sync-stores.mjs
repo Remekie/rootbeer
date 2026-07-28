@@ -42,6 +42,9 @@ const CITY_CENTRES = {
   'medicine hat': [50.0405, -110.6764],
   'lac la biche': [54.7686, -111.9653],
   'rocky mountain house': [52.3766, -114.9188],
+  lethbridge: [49.6946, -112.8331],
+  cochrane: [51.1875, -114.4711],
+  beaumont: [53.3525, -113.4151],
 };
 const AB_CENTROID = [53.9333, -116.5765];
 
@@ -166,12 +169,24 @@ function reconcile(prev, union) {
   for (const [id, { api, carries }] of union) {
     const existing = prevById.get(id);
     if (existing) {
+      let store = existing.store;
+      // Existing entries are otherwise carried over untouched, so a store that
+      // landed on the AB-centroid placeholder (unknown city at the time) stays
+      // wrong forever. Re-derive its coords each run until something better
+      // (API coords or a CITY_CENTRES entry) resolves it.
+      if (store.lat === AB_CENTROID[0] && store.lng === AB_CENTROID[1]) {
+        const [lat, lng] = coordsOf(api);
+        if (lat !== AB_CENTROID[0] || lng !== AB_CENTROID[1]) {
+          console.warn(`  ~ ${store.name} [${store.city}] repinned off the AB centroid`);
+          store = { ...store, lat, lng };
+        }
+      }
       const next = canonCarries(carries);
-      if (sameSet(existing.store.carries, next)) {
-        merged.push({ store: existing.store, order: existing.order });
+      if (sameSet(store.carries, next)) {
+        merged.push({ store, order: existing.order });
       } else {
-        carriesChanged.push(`${existing.store.name}: [${existing.store.carries}] -> [${next}]`);
-        merged.push({ store: { ...existing.store, carries: next }, order: existing.order });
+        carriesChanged.push(`${store.name}: [${store.carries}] -> [${next}]`);
+        merged.push({ store: { ...store, carries: next }, order: existing.order });
       }
     } else {
       const store = buildStore(api, carries);
