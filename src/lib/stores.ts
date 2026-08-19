@@ -1,8 +1,10 @@
 /*
-  Stockist data — public entry point. Reads two sources and merges them:
+  Stockist data — public entry point. Reads three sources and merges them:
     • stores.retail.json — RETAIL liquor stores, GENERATED from LiquorConnect
       (Connect Logistics / AGLC) by scripts/sync-stores.mjs. Do NOT hand-edit;
       run the sync (see below) and it rewrites this file.
+    • stores.pending.ts  — real, verified retail stores not yet showing up in
+      LiquorConnect's public directory. Hand-maintained; see its own header.
     • stores.clubs.ts    — ON-PREMISE venues (bars/clubs), hand-maintained.
 
   Refresh retail from LiquorConnect:
@@ -17,14 +19,37 @@
 */
 import type { Store } from './stores.types';
 import retailData from './stores.retail.json';
+import { pending } from './stores.pending';
 import { clubs } from './stores.clubs';
 
 export type { Store, StoreType } from './stores.types';
 
 const retail = retailData as Store[];
 
-// Retail first (Root Beer Rush stores already ordered first by the sync), then clubs.
-export const stores: Store[] = [...retail, ...clubs];
+// Merge retail + pending by supplier id. A pending entry whose id matches a
+// retail row folds its `carries` onto that row (set union) instead of adding a
+// second pin — this is how a store already in the live feed for one SKU (say
+// Coco Mist) gets its other verified SKUs shown before LiquorConnect lists them.
+// Retail fields win (they are the live-API source of truth); only carries merge.
+// A pending entry with a brand-new id is appended as its own store.
+function mergeById(base: Store[], extra: Store[]): Store[] {
+  const byId = new Map<string, Store>();
+  for (const s of base) byId.set(s.id, s);
+  for (const s of extra) {
+    const existing = byId.get(s.id);
+    byId.set(
+      s.id,
+      existing
+        ? { ...existing, carries: [...new Set([...existing.carries, ...s.carries])] }
+        : s,
+    );
+  }
+  return [...byId.values()];
+}
+
+// Retail first (Root Beer Rush stores already ordered first by the sync) with
+// pending folded in by id, then clubs.
+export const stores: Store[] = [...mergeById(retail, pending), ...clubs];
 
 // Provinces present in the data, for the filter dropdown. Derived, never hand-kept.
 export const provinces: string[] = [...new Set(stores.map((s) => s.province))].sort();
