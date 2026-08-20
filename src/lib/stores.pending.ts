@@ -84,4 +84,21 @@ export const pending: Store[] = [
     lat: 53.522398,
     lng: -113.419249,
   },
+  {
+    // AGLC sales confirm Root Beer Rush (SKU 144588), licence 78391700. Full
+    // record from LiquorConnect (Suppliers?$filter=Number eq 78391700),
+    // EstablishmentType "Liquor Store" (Retail Liquor Store - Private).
+    // Coordinates are LiquorConnect's own.
+    id: '99-liquor-link-52693',
+    type: 'retail',
+    name: '99 LIQUOR LINK',
+    carries: ['Root Beer Rush'],
+    address: '9855 63 Avenue NW',
+    city: 'Edmonton',
+    province: 'AB',
+    postal: 'T6E 0G7',
+    phone: '(780) 431-2685',
+    lat: 53.499448,
+    lng: -113.485591,
+  },
 ];
