@@ -100,6 +100,89 @@
     "lng": -112.8331
   },
   {
+    "id": "jack-s-liquor-store-53348",
+    "type": "retail",
+    "name": "JACK'S LIQUOR STORE",
+    "carries": [
+      "Root Beer Rush",
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "9012 50 St NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6B 2Z5",
+    "phone": "(780) 490-7631",
+    "hours": "Mon 10a–10p · Tue–Thu 10–10p · Fri 10–12a · Sat 10–11p · Sun 10–10p",
+    "lat": 53.522398,
+    "lng": -113.419249
+  },
+  {
+    "id": "co-op-liquor-at-riverside-52648",
+    "type": "retail",
+    "name": "CO-OP LIQUOR AT RIVERSIDE",
+    "carries": [
+      "Root Beer Rush",
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "200-10 Rose Gate",
+    "city": "St. Albert",
+    "province": "AB",
+    "postal": "T8N 7Y3",
+    "phone": "(780) 963-0500",
+    "lat": 53.630002,
+    "lng": -113.659585
+  },
+  {
+    "id": "99-liquor-link-52693",
+    "type": "retail",
+    "name": "99 LIQUOR LINK",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "9855 63 Avenue NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6E 0G7",
+    "phone": "7804312685",
+    "hours": "Mon–Sat 10a–2a · Sun 2a–2a",
+    "lat": 53.499448,
+    "lng": -113.485591
+  },
+  {
+    "id": "liquorsea-54470",
+    "type": "retail",
+    "name": "LIQUORSEA",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "140-1830 52 St SE",
+    "city": "Calgary",
+    "province": "AB",
+    "postal": "T2B 1N1",
+    "phone": "4034013417",
+    "hours": "Mon–Sun 9a–10p",
+    "lat": 51.036073,
+    "lng": -113.957811
+  },
+  {
+    "id": "tj-s-liquor-50572",
+    "type": "retail",
+    "name": "TJ'S LIQUOR",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "A-404 Mayor Magrath Dr N",
+    "city": "Lethbridge",
+    "province": "AB",
+    "postal": "T1H 6H7",
+    "phone": "4033313000",
+    "hours": "Mon 10a–10.00PM · Tue 10a–10PM · Wed–Sun 10AM–10PM",
+    "lat": 49.70361,
+    "lng": -112.810129
+  },
+  {
     "id": "bsw-liquor-51835",
     "type": "retail",
     "name": "BSW LIQUOR",
@@ -265,22 +348,6 @@
     "url": "https://www.skipthedishes.com/evolution-liquor-9216-51st-avenue-northwest",
     "lat": 53.488542,
     "lng": -113.469725
-  },
-  {
-    "id": "jack-s-liquor-store-53348",
-    "type": "retail",
-    "name": "JACK'S LIQUOR STORE",
-    "carries": [
-      "Coco Mist"
-    ],
-    "address": "9012 50 St NW",
-    "city": "Edmonton",
-    "province": "AB",
-    "postal": "T6B 2Z5",
-    "phone": "(780) 490-7631",
-    "hours": "Mon 10a–10p · Tue–Thu 10–10p · Fri 10–12a · Sat 10–11p · Sun 10–10p",
-    "lat": 53.522398,
-    "lng": -113.419249
   },
   {
     "id": "liquor-gallery-54771",
@@ -540,22 +607,6 @@
     "lng": -113.635283
   },
   {
-    "id": "co-op-liquor-at-riverside-52648",
-    "type": "retail",
-    "name": "CO-OP LIQUOR AT RIVERSIDE",
-    "carries": [
-      "Gold",
-      "Coco Mist"
-    ],
-    "address": "200-10 Rose Gate",
-    "city": "St. Albert",
-    "province": "AB",
-    "postal": "T8N 7Y3",
-    "phone": "(780) 963-0500",
-    "lat": 53.630002,
-    "lng": -113.659585
-  },
-  {
     "id": "bottoms-up-cold-beer-liquor-store-50050",
     "type": "retail",
     "name": "BOTTOMS UP COLD BEER & LIQUOR STORE",
@@ -809,5 +860,100 @@
     "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
     "lat": 49.6946,
     "lng": -112.8331
+  },
+  {
+    "id": "campio-brewing-co-51786",
+    "type": "retail",
+    "name": "CAMPIO BREWING CO.",
+    "carries": [
+      "Gold"
+    ],
+    "address": "10257 105 Street NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5J 1E3",
+    "phone": "5876351952",
+    "lat": 53.5461,
+    "lng": -113.4938
+  },
+  {
+    "id": "campio-brewing-company-ritchie-54706",
+    "type": "retail",
+    "name": "CAMPIO BREWING COMPANY RITCHIE",
+    "carries": [
+      "Gold"
+    ],
+    "address": "9570 76 Ave NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T6C 0K2",
+    "phone": "7807848808",
+    "lat": 53.5461,
+    "lng": -113.4938
+  },
+  {
+    "id": "great-canadian-liquor-50046",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "4620 50 Avenue",
+    "city": "Gibbons",
+    "province": "AB",
+    "postal": "T0A 1N0",
+    "phone": "7809233474",
+    "hours": "Mon–Wed 10–11p · Thu 10–1p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 53.827983,
+    "lng": -113.324093
+  },
+  {
+    "id": "great-canadian-liquor-50047",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "3-102 Erie Street",
+    "city": "Devon",
+    "province": "AB",
+    "postal": "T9G 2J4",
+    "phone": "7809875411",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 53.359343,
+    "lng": -113.728678
+  },
+  {
+    "id": "great-canadian-liquor-50049",
+    "type": "retail",
+    "name": "GREAT CANADIAN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "5117 50 Street",
+    "city": "Wetaskiwin",
+    "province": "AB",
+    "postal": "T9A 1K1",
+    "phone": "7803527497",
+    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 52.971124,
+    "lng": -113.373203
+  },
+  {
+    "id": "rocky-mountain-liquor-50155",
+    "type": "retail",
+    "name": "ROCKY MOUNTAIN LIQUOR",
+    "carries": [
+      "Gold"
+    ],
+    "address": "Dickinsfield Mall",
+    "city": "Fort Mcmurray",
+    "province": "AB",
+    "postal": "T9K 1X4",
+    "phone": "7807919900",
+    "hours": "Mon–Wed 10–11p · Thu 10–1p · Fri–Sat 10–12a · Sun 10–11p",
+    "lat": 53.9333,
+    "lng": -116.5765
   }
 ]
