@@ -123,7 +123,6 @@
     "name": "CO-OP LIQUOR AT RIVERSIDE",
     "carries": [
       "Root Beer Rush",
-      "Gold",
       "Coco Mist"
     ],
     "address": "200-10 Rose Gate",
@@ -418,7 +417,6 @@
     "type": "retail",
     "name": "LIQUOR ISLAND",
     "carries": [
-      "Gold",
       "Coco Mist"
     ],
     "address": "6721 Ellerslie Rd SW",
@@ -506,38 +504,6 @@
     "hours": "Fri–Sat 10a–2a",
     "lat": 55.167638,
     "lng": -118.79524
-  },
-  {
-    "id": "the-great-canadian-liquor-co-50179",
-    "type": "retail",
-    "name": "THE GREAT CANADIAN LIQUOR COMPANY",
-    "carries": [
-      "Gold"
-    ],
-    "address": "10108 101 Avenue",
-    "city": "Lac La Biche",
-    "province": "AB",
-    "postal": "T0A 2C0",
-    "phone": "(780) 483-8183",
-    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
-    "lat": 54.770457,
-    "lng": -111.976953
-  },
-  {
-    "id": "great-canadian-liquor-compan-50062",
-    "type": "retail",
-    "name": "GREAT CANADIAN LIQUOR COMPANY",
-    "carries": [
-      "Gold"
-    ],
-    "address": "4515 47 Avenue",
-    "city": "Rocky Mountain House",
-    "province": "AB",
-    "postal": "T4T 1C5",
-    "phone": "(403) 847-1011",
-    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
-    "lat": 52.370045,
-    "lng": -114.911279
   },
   {
     "id": "bsw-liquor-51755",
