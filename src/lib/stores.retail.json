@@ -72,7 +72,8 @@
     "type": "retail",
     "name": "KING LIQUOR",
     "carries": [
-      "Root Beer Rush"
+      "Root Beer Rush",
+      "Coco Mist"
     ],
     "address": "115-9310 Southfort Drive",
     "city": "Fort Saskatchewan",
@@ -180,6 +181,40 @@
     "hours": "Mon 10a–10.00PM · Tue 10a–10PM · Wed–Sun 10AM–10PM",
     "lat": 49.70361,
     "lng": -112.810129
+  },
+  {
+    "id": "sobeys-liquor-royal-oak-53138",
+    "type": "retail",
+    "name": "SOBEYS LIQUOR (ROYAL OAK)",
+    "carries": [
+      "Root Beer Rush",
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "303-8888 Country Hills Boulevard NW",
+    "city": "Calgary",
+    "province": "AB",
+    "postal": "T3G 5T4",
+    "phone": "4032267900",
+    "hours": "Mon–Sun 10a–10p",
+    "lat": 51.151883,
+    "lng": -114.21468
+  },
+  {
+    "id": "willow-park-wines-spirits-51414",
+    "type": "retail",
+    "name": "WILLOW PARK WINES & SPIRITS",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "10801 Bonaventure Dr SE",
+    "city": "Calgary",
+    "province": "AB",
+    "postal": "T2J 6Z8",
+    "phone": "4032961640",
+    "hours": "Mon–Wed 10a–10p · Thu–Sat 10a–11p · Sun 10a–9p",
+    "lat": 50.95572,
+    "lng": -114.068943
   },
   {
     "id": "bsw-liquor-51835",
@@ -369,7 +404,8 @@
     "type": "retail",
     "name": "LIQUOR HOUSE",
     "carries": [
-      "Gold"
+      "Gold",
+      "Coco Mist"
     ],
     "address": "11314 Jasper Ave NW",
     "city": "Edmonton",
