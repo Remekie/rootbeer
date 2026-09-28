@@ -217,6 +217,23 @@
     "lng": -114.068943
   },
   {
+    "id": "upten-wines-and-spirits-52421",
+    "type": "retail",
+    "name": "UPTEN WINES AND SPIRITS",
+    "carries": [
+      "Root Beer Rush",
+      "Gold"
+    ],
+    "address": "105-201 10 Ave SE",
+    "city": "Calgary",
+    "province": "AB",
+    "postal": "T2G 2G5",
+    "phone": "4038606620",
+    "hours": "Mon–Wed 10a–10p · Thu–Sat 10a–MIDNIGHT · Sun 10a–10p",
+    "lat": 51.043036,
+    "lng": -114.060297
+  },
+  {
     "id": "bsw-liquor-51835",
     "type": "retail",
     "name": "BSW LIQUOR",
@@ -388,7 +405,6 @@
     "type": "retail",
     "name": "LIQUOR GALLERY",
     "carries": [
-      "Gold",
       "Coco Mist"
     ],
     "address": "13030 50 St NW",
@@ -957,5 +973,22 @@
     "hours": "Mon–Wed 10–11p · Thu 10–1p · Fri–Sat 10–12a · Sun 10–11p",
     "lat": 53.9333,
     "lng": -116.5765
+  },
+  {
+    "id": "arena-liquor-51906",
+    "type": "retail",
+    "name": "ARENA LIQUOR",
+    "carries": [
+      "Gold",
+      "Coco Mist"
+    ],
+    "address": "394-10266 103 Street NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5J 0Y8",
+    "phone": "7804200266",
+    "hours": "Mon–Thu 10a–10p · Fri–Sat 10a–11p · Sun 12p–9p",
+    "lat": 53.544482,
+    "lng": -113.498085
   }
 ]
