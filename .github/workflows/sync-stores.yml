@@ -13,9 +13,13 @@ on:
     - cron: '17 9 * * 1'
   workflow_dispatch: {}
 
-# Needed so the job can push the refreshed JSON back to the repo.
+# contents: write - push the refreshed JSON back to the repo.
+# actions: write  - explicitly kick off deploy.yml (see below: a push made with
+#                    this job's own GITHUB_TOKEN does NOT trigger other workflows'
+#                    `on: push`, so deploy.yml would otherwise never run).
 permissions:
   contents: write
+  actions: write
 
 # Don't overlap with a deploy or another sync of the same branch.
 concurrency:
@@ -36,6 +40,7 @@ jobs:
         run: node scripts/sync-stores.mjs
 
       - name: Commit and push if changed
+        id: sync
         run: |
           if [ -n "$(git status --porcelain src/lib/stores.retail.json)" ]; then
             git config user.name "store-sync-bot"
@@ -43,7 +48,20 @@ jobs:
             git add src/lib/stores.retail.json
             git commit -m "chore(stores): weekly LiquorConnect sync"
             git push
-            echo "Pushed updated store list — deploy.yml will publish it."
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Pushed updated store list."
           else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changes — store list already current."
           fi
+
+      - name: Trigger deploy
+        if: steps.sync.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # A push made with this job's own token never fires deploy.yml's
+          # `on: push` (GitHub suppresses workflow-triggered-workflow runs),
+          # so it has to be started explicitly.
+          gh workflow run deploy.yml --ref "${{ github.ref_name }}"
+          echo "Triggered deploy.yml."
