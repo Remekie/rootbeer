@@ -495,22 +495,6 @@
     "lng": -113.494884
   },
   {
-    "id": "red-night-liquor-store-51114",
-    "type": "retail",
-    "name": "RED NIGHT LIQUOR STORE",
-    "carries": [
-      "Gold"
-    ],
-    "address": "3448 99 Street NW",
-    "city": "Edmonton",
-    "province": "AB",
-    "postal": "T6E 5X5",
-    "phone": "(780) 465-2660",
-    "hours": "Mon–Sun 12p–2",
-    "lat": 53.468542,
-    "lng": -113.487391
-  },
-  {
     "id": "sobeys-liquor-lewis-estates-50574",
     "type": "retail",
     "name": "SOBEYS LIQUOR (LEWIS ESTATES)",
