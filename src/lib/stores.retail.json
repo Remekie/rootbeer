@@ -234,6 +234,22 @@
     "lng": -114.060297
   },
   {
+    "id": "edmonton-expo-centre-51354",
+    "type": "retail",
+    "name": "EDMONTON EXPO CENTRE",
+    "carries": [
+      "Root Beer Rush",
+      "Gold"
+    ],
+    "address": "7515 118 Avenue NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5B 0J2",
+    "phone": "7809098378",
+    "lat": 53.5461,
+    "lng": -113.4938
+  },
+  {
     "id": "bsw-liquor-51835",
     "type": "retail",
     "name": "BSW LIQUOR",
@@ -655,38 +671,6 @@
     "lng": -113.324093
   },
   {
-    "id": "great-canadian-liquor-50049",
-    "type": "retail",
-    "name": "GREAT CANADIAN LIQUOR",
-    "carries": [
-      "Gold"
-    ],
-    "address": "5117 50 Street",
-    "city": "Wetaskiwin",
-    "province": "AB",
-    "postal": "T9A 1K1",
-    "phone": "7803527497",
-    "hours": "Mon–Thu 10–11p · Fri–Sat 10–12a · Sun 10–11p",
-    "lat": 52.971124,
-    "lng": -113.373203
-  },
-  {
-    "id": "rocky-mountain-liquor-50155",
-    "type": "retail",
-    "name": "ROCKY MOUNTAIN LIQUOR",
-    "carries": [
-      "Gold"
-    ],
-    "address": "Dickinsfield Mall",
-    "city": "Fort Mcmurray",
-    "province": "AB",
-    "postal": "T9K 1X4",
-    "phone": "7807919900",
-    "hours": "Mon–Wed 10–11p · Thu 10–1p · Fri–Sat 10–12a · Sun 10–11p",
-    "lat": 53.9333,
-    "lng": -116.5765
-  },
-  {
     "id": "arena-liquor-51906",
     "type": "retail",
     "name": "ARENA LIQUOR",
@@ -702,5 +686,20 @@
     "hours": "Mon–Thu 10a–10p · Fri–Sat 10a–11p · Sun 12p–9p",
     "lat": 53.544482,
     "lng": -113.498085
+  },
+  {
+    "id": "parkwest-liquor-loft-55052",
+    "type": "retail",
+    "name": "PARKWEST LIQUOR LOFT",
+    "carries": [
+      "Coco Mist"
+    ],
+    "address": "18916 87 Ave NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5T 6J1",
+    "phone": "7809665599",
+    "lat": 53.52179,
+    "lng": -113.650389
   }
 ]
