@@ -52,6 +52,26 @@ export const clubs: Store[] = [
     lng: -113.5247,
   },
   {
+    // New account, confirmed Coco Mist. Different physical location from
+    // "O'Byrne's Ice District" above — this is the original Whyte Avenue
+    // location (Old Strathcona), per obyrnes.com and corroborating listings
+    // (Roadtrippers, Airbnb). Postal and exact lat/lng are a neighbourhood-
+    // level Nominatim match (house-number lookup didn't resolve); phone from
+    // obyrnes.com. Confirm/correct once a sales report or invoice is on hand.
+    id: "club-obyrnes-whyte-ave",
+    type: 'club',
+    name: "O'Byrne's Whyte Avenue",
+    carries: ["Coco Mist"],
+    address: "10616 82 Avenue NW",
+    city: "Edmonton",
+    province: "AB",
+    postal: "T6E 3S9",
+    phone: "(780) 414-6766",
+    url: "https://obyrnes.com/whyte-avenue-page",
+    lat: 53.5181,
+    lng: -113.4829,
+  },
+  {
     id: "club-enigma-bar-kitchen",
     type: 'club',
     name: "Enigma Bar and Kitchen",
