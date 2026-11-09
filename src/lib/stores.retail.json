@@ -106,7 +106,6 @@
     "name": "JACK'S LIQUOR STORE",
     "carries": [
       "Root Beer Rush",
-      "Gold",
       "Coco Mist"
     ],
     "address": "9012 50 St NW",
@@ -248,6 +247,22 @@
     "phone": "7809098378",
     "lat": 53.5461,
     "lng": -113.4938
+  },
+  {
+    "id": "royal-spirits-southgate-50609",
+    "type": "retail",
+    "name": "ROYAL SPIRITS SOUTHGATE",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "9519b 68 Ave",
+    "city": "Grande Prairie",
+    "province": "AB",
+    "postal": "T8V 7X8",
+    "phone": "7808303033",
+    "hours": "Mon 10a–10p · Tue–Thu 10am–10pm · Fri–Sat 10am–11pm · Sun 10am–9pm",
+    "lat": 55.141008,
+    "lng": -118.777218
   },
   {
     "id": "bsw-liquor-51835",
