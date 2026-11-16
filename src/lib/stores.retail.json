@@ -265,6 +265,39 @@
     "lng": -118.777218
   },
   {
+    "id": "g-p-liquor-for-less-53256",
+    "type": "retail",
+    "name": "G.P. LIQUOR FOR LESS",
+    "carries": [
+      "Root Beer Rush",
+      "Gold"
+    ],
+    "address": "101-10001 97 Ave",
+    "city": "Grande Prairie",
+    "province": "AB",
+    "postal": "T8V 0N3",
+    "phone": "(780) 532-8080",
+    "hours": "Fri–Sat 10a–2a",
+    "lat": 55.167638,
+    "lng": -118.79524
+  },
+  {
+    "id": "westlock-inn-52231",
+    "type": "retail",
+    "name": "WESTLOCK INN",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "10411 100 St",
+    "city": "Westlock",
+    "province": "AB",
+    "postal": "T7P 2G7",
+    "phone": "7803494483",
+    "hours": "Mon–Sat 10a–12a · Sun 10a–10p",
+    "lat": 54.151217,
+    "lng": -113.849331
+  },
+  {
     "id": "bsw-liquor-51835",
     "type": "retail",
     "name": "BSW LIQUOR",
@@ -555,22 +588,6 @@
     "phone": "(587) 735-2372",
     "lat": 53.55602,
     "lng": -113.53568
-  },
-  {
-    "id": "g-p-liquor-for-less-53256",
-    "type": "retail",
-    "name": "G.P. LIQUOR FOR LESS",
-    "carries": [
-      "Gold"
-    ],
-    "address": "101-10001 97 Ave",
-    "city": "Grande Prairie",
-    "province": "AB",
-    "postal": "T8V 0N3",
-    "phone": "(780) 532-8080",
-    "hours": "Fri–Sat 10a–2a",
-    "lat": 55.167638,
-    "lng": -118.79524
   },
   {
     "id": "bsw-liquor-51755",
