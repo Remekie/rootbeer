@@ -298,6 +298,54 @@
     "lng": -113.849331
   },
   {
+    "id": "blairmore-liquor-store-51072",
+    "type": "retail",
+    "name": "BLAIRMORE LIQUOR STORE",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "12302 20 Avenue",
+    "city": "Municipality Of Crowsnest Pass",
+    "province": "AB",
+    "postal": "T0K 0E0",
+    "phone": "4035628598",
+    "hours": "Mon–Thu 10a–10p · Fri–Sat 10a–11p · Sun 10a–10p",
+    "lat": 53.9333,
+    "lng": -116.5765
+  },
+  {
+    "id": "high-prairie-liquor-store-52899",
+    "type": "retail",
+    "name": "HIGH PRAIRIE LIQUOR STORE",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "4900 53 Street",
+    "city": "High Prairie",
+    "province": "AB",
+    "postal": "T0G 1E0",
+    "phone": "7805233436",
+    "hours": "Mon–Sun 10a–10p",
+    "lat": 55.432191,
+    "lng": -116.502069
+  },
+  {
+    "id": "malts-grains-52449",
+    "type": "retail",
+    "name": "MALTS & GRAINS",
+    "carries": [
+      "Root Beer Rush"
+    ],
+    "address": "10816 170 Street NW",
+    "city": "Edmonton",
+    "province": "AB",
+    "postal": "T5S 2H7",
+    "phone": "8259751973",
+    "hours": "Mon–Thu 10a–8p · Fri 10a–9p · Sat 10a–8p · Sun 12a–5a",
+    "lat": 53.55461,
+    "lng": -113.61649
+  },
+  {
     "id": "bsw-liquor-51835",
     "type": "retail",
     "name": "BSW LIQUOR",
